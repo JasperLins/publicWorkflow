@@ -17,6 +17,8 @@
 | 2026-08-17 | 4 | projects/fridge-keeper/docs/04-tech/tech-stack.md | 方案 A(SwiftUI+FC 极薄代理+qwen3-vl-flash 主力/GLM 备援)打分 4.70,架构图+8 风险 | 技术栈、架构图、视觉API | 已确认 |
 | 2026-08-17 | 4 | projects/fridge-keeper/docs/04-tech/third-party-services.md | 单次识别 ¥0.0005;月成本 57+MAU×0.00768;N∈[15,60] 推荐 30 | 第三方成本、免费额度、API | 已确认 |
 | 2026-08-17 | 4 | projects/fridge-keeper/docs/04-tech/questions-stage4.md | 7 题,模拟选推荐项(D-019~025);主代理预检通过 | 决策、批量提问 | 已确认 |
+| 2026-08-17 | 4 | projects/fridge-keeper/docs/03-requirements/feature-list.md | **v0.2 已回填校准**:27 子任务,直接 38.5/含缓冲 53.9(+11.6% 阈值内),P0 含缓冲 45.5,AI 并行 81% | 功能拆解、回填校准、变更记录 | 已确认 |
+| 2026-08-17 | 4 | projects/fridge-keeper/docs/03-requirements/requirement-doc.md | v0.2:FR-10 N=30、FR-11 M=300 按 D-021 回填 | PRD、额度参数 | 已确认 |
 
 ## 阶段运行台账(token 按 skill 粒度)
 | 阶段 | 子任务状态(done/pending) | token 估算 | 产出量(文件/行) | 门禁三态 |
@@ -25,9 +27,9 @@
 | 1 | 种子(跳过实测,见 _test/reports/test-a) | — | — | — |
 | 2 | market-supply-demand=done;competitor-analysis=done | 2A≈22 万;2B≈29 万(子代理token) | 3 文件/~500 行 | 预检通过→模拟答题(一次通过) |
 | 3 | requirements-organizer=done;feature-breakdown(初估)=done | 阶段3≈54 万;QA预检≈32 万(子代理token) | 3 文件/~230 行 | QA 修复 5 项后通过→模拟答题(经修订通过) |
-| 4 | tech-stack-selector=done;third-party-service-scout=done;**回填校准=pending(下一步)** | 架构师≈138 万(含大量联网检索,子代理token) | 3 文件/390 行 | 主代理预检通过→模拟答题(一次通过) |
+| 4 | tech-stack-selector=done;third-party-service-scout=done;回填校准=done(快检通过) | 架构师≈138 万;回填≈55 万(子代理token) | 3+2 修订/580 行 | 主代理预检通过→模拟答题(一次通过);回填 +11.6% 阈值内 |
 
 ## 项目进度(唯一事实源)
-- 已完成阶段:0、1(种子)、2、3、4(D-019~025,技术栈定稿方案 A)
-- 进行中:阶段 4 收尾 · 全栈工程师回填校准工时
-- 下一动作:回填 feature-list → 阶段 5 UX/UI
+- 已完成阶段:0、1(种子)、2、3、4(回填校准完成,53.9 人日定稿基线)
+- 进行中:阶段 5 · UX 流程与界面清单
+- 下一动作:UX 设计师 ux-flows.md → UI 设计师 app-ui-design 原型 → 门禁 5
