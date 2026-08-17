@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>首页 · 采购速算</title>
+  <!-- CDN 说明:技能常规默认的 cdn.tailwindcss.com 与 cdnjs.cloudflare.com 在当前网络不可达(SSL 拦截,实测 000),
+       已切换为实测可达(200)的 jsDelivr 镜像;类名仅用标准与任意值语法,与官方 CDN 完全兼容。 -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+  <style>
+    /* 画布固定 iPhone 15 Pro 393×852;ui-spec §7:背景 #F8FAFC、字体 -apple-system/SF Pro */
+    html, body { width: 393px; margin: 0 auto; background: #F8FAFC; font-family: -apple-system, "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif; }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body class="text-[#0F172A]">
+
+  <!-- ===== iOS 状态栏:时间 / 信号 / Wi-Fi / 电量 + 灵动岛(纯 CSS) ===== -->
+  <header class="relative h-[54px] bg-white px-8 pt-[18px]">
+    <div class="flex items-center justify-between text-[15px] font-semibold">
+      <span>9:41</span>
+      <span class="flex items-center gap-[6px] text-[13px]">
+        <i class="fa-solid fa-signal"></i>
+        <i class="fa-solid fa-wifi"></i>
+        <i class="fa-solid fa-battery-full text-[17px]"></i>
+      </span>
+    </div>
+    <div class="absolute left-1/2 top-[12px] h-[32px] w-[118px] -translate-x-1/2 rounded-full bg-black"></div>
+  </header>
+
+  <main class="px-4 pb-32 pt-3">
+    <!-- 问候区 + 用户头像(Unsplash 真实人像直链,已实测可达) -->
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-[12px] text-[#64748B]">8月17日 周一 · 采购部</p>
+        <h1 class="mt-0.5 text-[20px] font-bold leading-tight">下午好,李明</h1>
+      </div>
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&auto=format&q=80"
+           alt="采购员李明头像" class="h-11 w-11 rounded-full object-cover ring-2 ring-white">
+    </div>
+
+    <!-- 主操作:新建比价(ui-spec §7:主按钮满宽 · 圆角 12px · 蓝底白字;active 伪类表达按压态) -->
+    <button class="mt-4 flex h-[52px] w-full items-center justify-center gap-2 rounded-xl bg-[#2563EB] text-[17px] font-semibold text-white shadow-[0_2px_8px_rgba(15,23,42,.08)] active:bg-[#1D4ED8]">
+      <i class="fa-solid fa-plus"></i>新建比价
+    </button>
+
+    <!-- 本月概览:纯 CSS 渐变数据卡(工具型首页以数据为主,渐变+图标即语境匹配,非占位符) -->
+    <section class="mt-3 grid grid-cols-3 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1E40AF] p-4 text-white shadow-[0_2px_8px_rgba(15,23,42,.08)]">
+      <div>
+        <p class="text-[20px] font-bold leading-none">12<span class="text-[11px] font-normal opacity-80"> 单</span></p>
+        <p class="mt-1.5 text-[11px] opacity-80">本月已决策</p>
+      </div>
+      <div class="border-l border-white/25 pl-3">
+        <p class="text-[20px] font-bold leading-none">8.3<span class="text-[11px]">%</span></p>
+        <p class="mt-1.5 text-[11px] opacity-80">平均节省</p>
+      </div>
+      <div class="border-l border-white/25 pl-3">
+        <p class="text-[20px] font-bold leading-none">4.2<span class="text-[11px]">万</span></p>
+        <p class="mt-1.5 text-[11px] opacity-80">累计节省(元)</p>
+      </div>
+    </section>
+
+    <!-- 进行中比价 -->
+    <section class="mt-5">
+      <div class="flex items-center justify-between">
+        <h2 class="text-[15px] font-semibold">进行中比价</h2>
+        <a href="history.html" class="flex items-center gap-1 text-[12px] text-[#2563EB]">全部<i class="fa-solid fa-chevron-right text-[10px]"></i></a>
+      </div>
+
+      <!-- 卡片 1:报价已录齐,待出结果(语义色:警告 #D97706) -->
+      <article class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(15,23,42,.08)]">
+        <div class="flex items-start justify-between gap-2">
+          <div>
+            <h3 class="text-[15px] font-semibold">不锈钢法兰盘 DN50</h3>
+            <p class="mt-1 text-[12px] text-[#64748B]">编号 BJ-240817-01 · 数量 500 件</p>
+          </div>
+          <span class="shrink-0 rounded-md bg-[#D97706]/10 px-2 py-1 text-[11px] font-medium text-[#D97706]"><i class="fa-solid fa-hourglass-half mr-1"></i>待出结果</span>
+        </div>
+        <div class="mt-3">
+          <div class="flex justify-between text-[11px] text-[#64748B]"><span>报价录入 3/3 家</span><span>截止今天 18:00</span></div>
+          <div class="mt-1.5 h-1.5 w-full rounded-full bg-slate-100"><div class="h-full w-full rounded-full bg-[#16A34A]"></div></div>
+        </div>
+        <a href="result.html" class="mt-3 flex h-10 items-center justify-center rounded-xl bg-[#2563EB] text-[14px] font-medium text-white active:bg-[#1D4ED8]">查看比价结果</a>
+      </article>
+
+      <!-- 卡片 2:报价未齐,可继续录入(次按钮样式:描边蓝字) -->
+      <article class="mt-3 rounded-2xl bg-white p-4 shadow-[0_2px_8px_rgba(15,23,42,.08)]">
+        <div class="flex items-start justify-between gap-2">
+          <div>
+            <h3 class="text-[15px] font-semibold">人体工学椅(年度框架)</h3>
+            <p class="mt-1 text-[12px] text-[#64748B]">编号 BJ-240814-07 · 数量 80 把</p>
+          </div>
+          <span class="shrink-0 rounded-md bg-[#D97706]/10 px-2 py-1 text-[11px] font-medium text-[#D97706]"><i class="fa-solid fa-pen-to-square mr-1"></i>进行中</span>
+        </div>
+        <div class="mt-3">
+          <div class="flex justify-between text-[11px] text-[#64748B]"><span>报价录入 2/3 家 · 待录 恒盛办公</span><span>明天 12:00 截止</span></div>
+          <div class="mt-1.5 h-1.5 w-full rounded-full bg-slate-100"><div class="h-full w-2/3 rounded-full bg-[#D97706]"></div></div>
+        </div>
+        <button class="mt-3 flex h-10 w-full items-center justify-center rounded-xl border border-[#2563EB] text-[14px] font-medium text-[#2563EB] active:bg-[#2563EB]/10">继续录入报价</button>
+      </article>
+    </section>
+
+    <!-- 快捷入口 -->
+    <section class="mt-5">
+      <h2 class="text-[15px] font-semibold">快捷入口</h2>
+      <div class="mt-3 grid grid-cols-4 gap-3">
+        <button class="flex flex-col items-center gap-2 rounded-2xl bg-white py-3.5 shadow-[0_2px_8px_rgba(15,23,42,.08)] active:bg-slate-50">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#2563EB]/10 text-[16px] text-[#2563EB]"><i class="fa-solid fa-qrcode"></i></span>
+          <span class="text-[11px] text-[#64748B]">扫码录价</span>
+        </button>
+        <button class="flex flex-col items-center gap-2 rounded-2xl bg-white py-3.5 shadow-[0_2px_8px_rgba(15,23,42,.08)] active:bg-slate-50">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#16A34A]/10 text-[16px] text-[#16A34A]"><i class="fa-solid fa-clone"></i></span>
+          <span class="text-[11px] text-[#64748B]">比价模板</span>
+        </button>
+        <button class="flex flex-col items-center gap-2 rounded-2xl bg-white py-3.5 shadow-[0_2px_8px_rgba(15,23,42,.08)] active:bg-slate-50">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#D97706]/10 text-[16px] text-[#D97706]"><i class="fa-solid fa-calendar-days"></i></span>
+          <span class="text-[11px] text-[#64748B]">账期计算</span>
+        </button>
+        <button class="flex flex-col items-center gap-2 rounded-2xl bg-white py-3.5 shadow-[0_2px_8px_rgba(15,23,42,.08)] active:bg-slate-50">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-500/10 text-[16px] text-[#64748B]"><i class="fa-solid fa-circle-question"></i></span>
+          <span class="text-[11px] text-[#64748B]">帮助中心</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== iOS 底部 TabBar:首页(当前)/ 结果 / 历史;图标为设计选择:fa-house / fa-scale-balanced / fa-clock-rotate-left ===== -->
+  <nav class="fixed inset-x-0 bottom-0 z-10 border-t border-slate-200/80 bg-white/90 backdrop-blur">
+    <div class="grid grid-cols-3 px-2 pt-2">
+      <a href="home.html" class="flex flex-col items-center gap-[3px] text-[#2563EB]">
+        <i class="fa-solid fa-house text-[20px]"></i><span class="text-[10px] font-medium">首页</span>
+      </a>
+      <a href="result.html" class="flex flex-col items-center gap-[3px] text-[#94A3B8]">
+        <i class="fa-solid fa-scale-balanced text-[20px]"></i><span class="text-[10px]">结果</span>
+      </a>
+      <a href="history.html" class="flex flex-col items-center gap-[3px] text-[#94A3B8]">
+        <i class="fa-solid fa-clock-rotate-left text-[20px]"></i><span class="text-[10px]">历史</span>
+      </a>
+    </div>
+    <!-- iOS Home Indicator -->
+    <div class="mx-auto mb-2 mt-1.5 h-[5px] w-[134px] rounded-full bg-[#0F172A]/90"></div>
+  </nav>
+
+</body>
+</html>

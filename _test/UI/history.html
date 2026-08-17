@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>历史记录 · 采购速算</title>
+  <!-- CDN 说明:默认 cdn.tailwindcss.com / cdnjs 本网络不可达,改用实测可达的 jsDelivr(同 home.html) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+  <style>
+    html, body { width: 393px; margin: 0 auto; background: #F8FAFC; font-family: -apple-system, "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif; }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body class="text-[#0F172A]">
+
+  <!-- ===== iOS 状态栏 ===== -->
+  <header class="relative h-[54px] bg-white px-8 pt-[18px]">
+    <div class="flex items-center justify-between text-[15px] font-semibold">
+      <span>9:41</span>
+      <span class="flex items-center gap-[6px] text-[13px]">
+        <i class="fa-solid fa-signal"></i>
+        <i class="fa-solid fa-wifi"></i>
+        <i class="fa-solid fa-battery-full text-[17px]"></i>
+      </span>
+    </div>
+    <div class="absolute left-1/2 top-[12px] h-[32px] w-[118px] -translate-x-1/2 rounded-full bg-black"></div>
+  </header>
+
+  <!-- 页面标题 + 搜索入口 -->
+  <header class="flex h-[48px] items-center justify-between px-4 pt-1">
+    <h1 class="text-[20px] font-bold">历史记录</h1>
+    <button aria-label="搜索历史" class="flex h-9 w-9 items-center justify-center rounded-full active:bg-slate-100"><i class="fa-solid fa-magnifying-glass text-[15px]"></i></button>
+  </header>
+
+  <!-- 状态筛选:选中态(蓝底白字)与默认态(白底灰字)并列演示 -->
+  <div class="flex gap-2 px-4">
+    <button class="rounded-full bg-[#2563EB] px-3.5 py-1.5 text-[12px] font-medium text-white">全部</button>
+    <button class="rounded-full bg-white px-3.5 py-1.5 text-[12px] text-[#64748B] shadow-[0_2px_8px_rgba(15,23,42,.08)] active:bg-slate-50">已决策</button>
+    <button class="rounded-full bg-white px-3.5 py-1.5 text-[12px] text-[#64748B] shadow-[0_2px_8px_rgba(15,23,42,.08)] active:bg-slate-50">进行中</button>
+    <button class="rounded-full bg-white px-3.5 py-1.5 text-[12px] text-[#64748B] shadow-[0_2px_8px_rgba(15,23,42,.08)] active:bg-slate-50">已取消</button>
+  </div>
+
+  <main class="px-4 pb-32 pt-3">
+    <p class="text-[12px] text-[#64748B]">共 38 条 · 累计节省 ¥4.2 万</p>
+
+    <!-- 今天 -->
+    <section class="mt-3">
+      <h2 class="px-1 text-[12px] font-semibold text-[#64748B]">今天</h2>
+
+      <!-- 已决策(语义色:成功 #16A34A) -->
+      <article class="mt-2 flex items-center gap-3 rounded-2xl bg-white p-3.5 shadow-[0_2px_8px_rgba(15,23,42,.08)]">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#16A34A]/10 text-[14px] text-[#16A34A]"><i class="fa-solid fa-circle-check"></i></span>
+        <div class="min-w-0 flex-1">
+          <h3 class="truncate text-[14px] font-semibold">不锈钢法兰盘 DN50</h3>
+          <p class="mt-0.5 truncate text-[12px] text-[#64748B]">选定 华越精密 · 3 家比价 · 省 ¥1,020</p>
+        </div>
+        <div class="flex shrink-0 flex-col items-end gap-1">
+          <span class="rounded-md bg-[#16A34A]/10 px-2 py-0.5 text-[10px] font-medium text-[#16A34A]">已决策</span>
+          <span class="text-[10px] text-[#64748B]">14:26</span>
+        </div>
+      </article>
+
+      <!-- 进行中(语义色:警告 #D97706) -->
+      <article class="mt-2 flex items-center gap-3 rounded-2xl bg-white p-3.5 shadow-[0_2px_8px_rgba(15,23,42,.08)]">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#D97706]/10 text-[14px] text-[#D97706]"><i class="fa-solid fa-hourglass-half"></i></span>
+        <div class="min-w-0 flex-1">
+          <h3 class="truncate text-[14px] font-semibold">人体工学椅(年度框架)</h3>
+          <p class="mt-0.5 truncate text-[12px] text-[#64748B]">已录 2/3 家 · 待录 恒盛办公 报价</p>
+        </div>
+        <div class="flex shrink-0 flex-col items-end gap-1">
+          <span class="rounded-md bg-[#D97706]/10 px-2 py-0.5 text-[10px] font-medium text-[#D97706]">进行中</span>
+          <span class="text-[10px] text-[#64748B]">09:12</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- 昨天 -->
+    <section class="mt-4">
+      <h2 class="px-1 text-[12px] font-semibold text-[#64748B]">昨天</h2>
+
+      <article class="mt-2 flex items-center gap-3 rounded-2xl bg-white p-3.5 shadow-[0_2px_8px_rgba(15,23,42,.08)]">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#16A34A]/10 text-[14px] text-[#16A34A]"><i class="fa-solid fa-circle-check"></i></span>
+        <div class="min-w-0 flex-1">
+          <h3 class="truncate text-[14px] font-semibold">A4 复印纸(20 箱)</h3>
+          <p class="mt-0.5 truncate text-[12px] text-[#64748B]">选定 广源文具 · 3 家比价 · 省 ¥86</p>
+        </div>
+        <div class="flex shrink-0 flex-col items-end gap-1">
+          <span class="rounded-md bg-[#16A34A]/10 px-2 py-0.5 text-[10px] font-medium text-[#16A34A]">已决策</span>
+          <span class="text-[10px] text-[#64748B]">16:40</span>
+        </div>
+      </article>
+
+      <!-- 已取消(语义色:错误 #DC2626) -->
+      <article class="mt-2 flex items-center gap-3 rounded-2xl bg-white p-3.5 shadow-[0_2px_8px_rgba(15,23,42,.08)]">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#DC2626]/10 text-[14px] text-[#DC2626]"><i class="fa-solid fa-circle-xmark"></i></span>
+        <div class="min-w-0 flex-1">
+          <h3 class="truncate text-[14px] font-semibold">激光硒鼓 HP-88A ×10</h3>
+          <p class="mt-0.5 truncate text-[12px] text-[#64748B]">供应商临时涨价 · 比价作废</p>
+        </div>
+        <div class="flex shrink-0 flex-col items-end gap-1">
+          <span class="rounded-md bg-[#DC2626]/10 px-2 py-0.5 text-[10px] font-medium text-[#DC2626]">已取消</span>
+          <span class="text-[10px] text-[#64748B]">11:05</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- 本周 -->
+    <section class="mt-4">
+      <h2 class="px-1 text-[12px] font-semibold text-[#64748B]">本周</h2>
+
+      <article class="mt-2 flex items-center gap-3 rounded-2xl bg-white p-3.5 shadow-[0_2px_8px_rgba(15,23,42,.08)]">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#16A34A]/10 text-[14px] text-[#16A34A]"><i class="fa-solid fa-circle-check"></i></span>
+        <div class="min-w-0 flex-1">
+          <h3 class="truncate text-[14px] font-semibold">LED 灯管 T8(300 支)</h3>
+          <p class="mt-0.5 truncate text-[12px] text-[#64748B]">选定 蓝驰工业 · 4 家比价 · 省 ¥430</p>
+        </div>
+        <div class="flex shrink-0 flex-col items-end gap-1">
+          <span class="rounded-md bg-[#16A34A]/10 px-2 py-0.5 text-[10px] font-medium text-[#16A34A]">已决策</span>
+          <span class="text-[10px] text-[#64748B]">周三</span>
+        </div>
+      </article>
+
+      <article class="mt-2 flex items-center gap-3 rounded-2xl bg-white p-3.5 shadow-[0_2px_8px_rgba(15,23,42,.08)]">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#16A34A]/10 text-[14px] text-[#16A34A]"><i class="fa-solid fa-circle-check"></i></span>
+        <div class="min-w-0 flex-1">
+          <h3 class="truncate text-[14px] font-semibold">亚克力展示架(定制)</h3>
+          <p class="mt-0.5 truncate text-[12px] text-[#64748B]">选定 骏达五金 · 3 家比价 · 省 ¥214</p>
+        </div>
+        <div class="flex shrink-0 flex-col items-end gap-1">
+          <span class="rounded-md bg-[#16A34A]/10 px-2 py-0.5 text-[10px] font-medium text-[#16A34A]">已决策</span>
+          <span class="text-[10px] text-[#64748B]">周二</span>
+        </div>
+      </article>
+    </section>
+
+    <p class="mt-4 text-center text-[11px] text-[#94A3B8]">— 已加载全部 38 条 —</p>
+
+    <!-- 空态样式(组件规格:筛选无结果时展示;ui-spec §7:空态用插画感 emoji + 文案。静态页以并列区块呈现供开发复现) -->
+    <section class="mt-6 rounded-2xl border border-dashed border-slate-300 bg-white/60 p-6 text-center">
+      <p class="text-[11px] font-semibold tracking-[0.2em] text-[#94A3B8]">空态样式 · 筛选无结果时展示</p>
+      <p class="mt-3 text-[40px] leading-none">📋</p>
+      <h3 class="mt-3 text-[15px] font-semibold">暂无匹配的历史记录</h3>
+      <p class="mt-1 text-[12px] text-[#64748B]">换个筛选条件,或新建一次比价</p>
+      <a href="home.html" class="mt-4 inline-flex h-9 items-center justify-center rounded-xl bg-[#2563EB] px-5 text-[13px] font-medium text-white active:bg-[#1D4ED8]">去新建比价</a>
+    </section>
+  </main>
+
+  <!-- ===== iOS 底部 TabBar:历史为当前屏 ===== -->
+  <nav class="fixed inset-x-0 bottom-0 z-10 border-t border-slate-200/80 bg-white/90 backdrop-blur">
+    <div class="grid grid-cols-3 px-2 pt-2">
+      <a href="home.html" class="flex flex-col items-center gap-[3px] text-[#94A3B8]">
+        <i class="fa-solid fa-house text-[20px]"></i><span class="text-[10px]">首页</span>
+      </a>
+      <a href="result.html" class="flex flex-col items-center gap-[3px] text-[#94A3B8]">
+        <i class="fa-solid fa-scale-balanced text-[20px]"></i><span class="text-[10px]">结果</span>
+      </a>
+      <a href="history.html" class="flex flex-col items-center gap-[3px] text-[#2563EB]">
+        <i class="fa-solid fa-clock-rotate-left text-[20px]"></i><span class="text-[10px] font-medium">历史</span>
+      </a>
+    </div>
+    <div class="mx-auto mb-2 mt-1.5 h-[5px] w-[134px] rounded-full bg-[#0F172A]/90"></div>
+  </nav>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>采购快速决策计算器 · 高保真静态原型总览</title>
+  <!-- CDN 说明:与各屏一致,默认 cdn.tailwindcss.com / cdnjs 本网络不可达,统一改用实测可达的 jsDelivr -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+  <style>
+    body { font-family: -apple-system, "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif; }
+    /* 设备壳:393×852 画布外的 iPhone 15 Pro 圆角外框(实现约定:外框由 index 承担,屏文件保持纯画布) */
+    .device {
+      width: 393px; height: 852px;
+      border: 11px solid #0B1220; border-radius: 56px;
+      overflow: hidden; background: #000;
+      box-shadow: 0 24px 48px rgba(15, 23, 42, .25);
+    }
+    .device iframe { display: block; width: 100%; height: 100%; border: 0; }
+  </style>
+</head>
+<body class="min-h-screen bg-[#EEF2F7] text-[#0F172A]">
+
+  <!-- 页头 -->
+  <header class="mx-auto max-w-[1440px] px-6 pb-2 pt-10">
+    <p class="text-[12px] font-semibold tracking-[0.25em] text-[#2563EB]">STAGE 5 · UI PROTOTYPE</p>
+    <h1 class="mt-2 text-[24px] font-bold">采购快速决策计算器 · 高保真静态原型</h1>
+    <p class="mt-2 text-[13px] text-[#64748B]">共 3 屏 · iPhone 15 Pro(393×852)· Tailwind + FontAwesome(CDN)· 依据 ux-flows.md 界面清单与 ui-spec.md 风格规范生成</p>
+    <p class="mt-1 text-[12px] text-[#94A3B8]"><i class="fa-solid fa-circle-info mr-1"></i>双击任一 HTML 可独立打开;屏内 TabBar 可互相切换;下方为 iframe 平铺展示(非跳转链接)。</p>
+  </header>
+
+  <!-- 三屏平铺 -->
+  <main class="mx-auto flex max-w-[1440px] flex-wrap items-start justify-center gap-x-10 gap-y-12 px-6 pb-16 pt-6">
+
+    <!-- S1 首页 -->
+    <figure class="flex flex-col items-center">
+      <div class="device"><iframe src="home.html" title="S1 首页 home"></iframe></div>
+      <figcaption class="mt-5 w-[393px] text-center">
+        <p class="text-[15px] font-semibold">S1 · 首页 <span class="ml-1 font-mono text-[12px] font-normal text-[#64748B]">home.html</span></p>
+        <p class="mt-1.5 text-[12px] leading-relaxed text-[#64748B]">新建比价主入口(FR-01);查看进行中比价的录入进度与截止时间;本月决策概览与快捷工具;底部 Tab 承载三屏导航。</p>
+      </figcaption>
+    </figure>
+
+    <!-- S2 比价结果 -->
+    <figure class="flex flex-col items-center">
+      <div class="device"><iframe src="result.html" title="S2 比价结果 result"></iframe></div>
+      <figcaption class="mt-5 w-[393px] text-center">
+        <p class="text-[15px] font-semibold">S2 · 比价结果 <span class="ml-1 font-mono text-[12px] font-normal text-[#64748B]">result.html</span></p>
+        <p class="mt-1.5 text-[12px] leading-relaxed text-[#64748B]">加权得分排名与推荐徽标(FR-03);价格/交期/账期/质量四维明细;权重说明、采购建议与分享报告;演示主按钮与禁用按钮两态。</p>
+      </figcaption>
+    </figure>
+
+    <!-- S3 历史记录 -->
+    <figure class="flex flex-col items-center">
+      <div class="device"><iframe src="history.html" title="S3 历史记录 history"></iframe></div>
+      <figcaption class="mt-5 w-[393px] text-center">
+        <p class="text-[15px] font-semibold">S3 · 历史记录 <span class="ml-1 font-mono text-[12px] font-normal text-[#64748B]">history.html</span></p>
+        <p class="mt-1.5 text-[12px] leading-relaxed text-[#64748B]">按日期分组回看历史决策(FR-04);已决策/进行中/已取消状态标签与筛选;附空态样式区块,供开发直接复现。</p>
+      </figcaption>
+    </figure>
+
+  </main>
+
+</body>
+</html>
