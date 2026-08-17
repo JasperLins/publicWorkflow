@@ -1,6 +1,6 @@
 ---
 name: feature-breakdown
-description: 把需求文档拆解为可排期、可估价的功能清单:模块→功能→子任务,含优先级、复杂度、人日工时(初估,待阶段 4 技术栈定稿后回填校准)。当需求文档已产出、进入阶段 3 后半程或阶段 4 回填校准时使用;不负责技术选型(那是 tech-stack-selector 的职责)。
+description: Decompose the PRD into a schedulable, priceable feature list (module→feature→subtask, 0.5–3 person-days each) with priorities, dependencies and buffered effort — initial estimate at Stage 3, recalibrated after the tech stack is final (Stage-4 backfill with change log). Use at Stage 3 and Stage 4 backfill; tech selection belongs to tech-stack-selector. 中文:功能清单 + 工时(初估/回填校准)。
 version: 1.1
 updated: 2026-08-17
 ---

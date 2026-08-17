@@ -1,6 +1,6 @@
 ---
 name: competitor-analysis
-description: 识别直接/间接竞品并量化对比:功能矩阵、定价、优劣势与差异化机会。当阶段 2 需要为需求取舍与定价提供市场依据时使用;不负责整体可行性结论(那是 market-supply-demand 的职责)。
+description: Identify direct/indirect competitors and compare them quantitatively — feature matrix (✅/⚠️/❌/❓), pricing bands, strengths/weaknesses, differentiation moves with defensibility. Use at Stage 2 to ground feature & pricing decisions; overall feasibility conclusion belongs to market-supply-demand. 中文:竞品功能矩阵/定价/差异化分析。
 version: 1.1
 updated: 2026-08-17
 ---

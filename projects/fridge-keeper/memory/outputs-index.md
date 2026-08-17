@@ -26,7 +26,12 @@
 | 2026-08-17 | 6 | projects/fridge-keeper/docs/06-ai-plan/ai-dev-plan.md | AI 开发计划:12 任务包 6 批次,中性 20 工作日/28 日历天,token 三档 1,550/2,670/4,730 万(¥124/214/378),人力提效 3.6×,台账校准闭合 | AI开发计划、token三档、校准 | 已确认 |
 | 2026-08-17 | 7 | projects/fridge-keeper/docs/07-business/cost-profit.md | 内部版:总成本 ¥36,659(A)/公允等效 ¥91,410;三档 ¥44,000–55,000(推荐 ¥49,500,利润 ¥12,841);敏感性三情景 | 成本利润、三档、敏感性 | 已确认 |
 | 2026-08-17 | 7 | projects/fridge-keeper/docs/07-business/quotation.md | 甲方版报价 ¥49,500 含税:7 分项包干+人天 ¥1,800 并列+30-40-30+交付物;保密扫描 0 命中 | 报价单、包干、里程碑 | 已确认 |
-| 2026-08-17 | 7 | projects/fridge-keeper/docs/07-business/questions-stage7.md | 7 题,模拟选推荐项(D-033~039);QA 预检修复 4 项后通过 | 决策、批量提问 | 已确认 |
+| 2026-08-17 | 7 | projects/fridge-keeper/docs/07-business/questions-stage7.md | 7 题,模拟选推荐项(D-033~039);QA 预检修复 4 项后通过 | 决策、批量提问 | 已确认(旧口径,被 7-v2 部分取代) |
+| 2026-08-17 | 7-v2 回溯 | projects/fridge-keeper/docs/06-ai-plan/ai-dev-plan.md | **v0.2**:AI 节奏模型 12 工作日/17 日历天(测试修复 46%);token ¥0 包月,配额占比待填 | AI开发计划、AI节奏、配额 | 已确认(v1.4 口径) |
+| 2026-08-17 | 7-v2 回溯 | projects/fridge-keeper/docs/04-tech/third-party-services.md | v0.2 增补:部署形态 Serverless+纯客户端,无需独立服务器;费用结论 ¥57+MAU×0.00768 | 服务器、部署形态 | 已确认 |
+| 2026-08-17 | 7-v2 回溯 | projects/fridge-keeper/docs/07-business/cost-profit.md | v0.2 三法定价:行情 21-52K/难度交叉/底价 30,734 红线 36,881;推荐 ¥38,000(利润 ¥7,266 如实) | 行情锚定、底价红线、贴线定价 | 已确认 |
+| 2026-08-17 | 7-v2 回溯 | projects/fridge-keeper/docs/07-business/quotation.md | v0.2 甲方版报价 ¥38,000;人天口径默认不并列;零内部数字 | 报价单、行情依据 | 报价中(有效期 30 天) |
+| 2026-08-17 | 7-v2 回溯 | projects/fridge-keeper/docs/07-business/questions-stage7-v2.md | 4 题口径变更备案,模拟选推荐项(D-040~043) | 口径变更、批量提问 | 已确认 |
 
 ## 阶段运行台账(token 按 skill 粒度)
 | 阶段 | 子任务状态(done/pending) | token 估算 | 产出量(文件/行) | 门禁三态 |
@@ -39,8 +44,9 @@
 | 5 | ux-flow-designer=done;app-ui-design=done(深度档 3 批) | UX≈27 万;UI≈288 万(生成 13 文件+CDN 校验往返,子代理token) | ux-flows+ui-spec+13 HTML/~2600 行 | 主代理预检通过→模拟答题(一次通过) |
 | 6 | ai-dev-estimator=done | ≈35 万(子代理token) | 1 文件/~180 行 | 主代理预检通过→模拟答题 D-031/032(一次通过) |
 | 7 | quotation-calculator=done | 商务≈59 万;QA≈39 万(子代理token) | 3 文件/~380 行 | QA 修复 4 项后通过→模拟答题(经修订通过) |
+| 7-v2 回溯 | 三文档重出+服务器节增补 | 商务≈95 万(子代理token) | 4 修订+1 新建/~420 行 | v1.4 口径变更,模拟答题 D-040~043(一次通过) |
 
 ## 项目进度(唯一事实源)
-- 已完成阶段:**0–7 全部完成**(8 阶段流水线端到端实测通过;D-039/共 39 决策、A-047/共 47 假设)
-- 进行中:—(阶段 8 复盘由框架测试方另行执行,见 _test/reports/e2e-stage2-7.md)
-- 下一动作:无(示例项目封版,产出可直接交付开发)
+- 已完成阶段:**0–7 全部完成**(v1.3 口径)+ **7-v2 回溯完成**(v1.4 新口径:报价 ¥38,000/周期 17 天/token 包月 ¥0);共 43 决策、52 假设
+- 进行中:—
+- 下一动作:阶段 8 交付包(client-summary + ai-dev-handoff)可随时按 delivery-packager 技能生成

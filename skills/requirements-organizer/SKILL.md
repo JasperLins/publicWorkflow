@@ -1,6 +1,6 @@
 ---
 name: requirements-organizer
-description: 把头脑风暴推荐方向与用户决策整理为标准需求文档(PRD),含用户故事、验收标准与范围边界。当阶段 1/2 结论已确认、进入阶段 3 需要产出可执行需求文档时使用;不负责功能拆解与工时(那是 feature-breakdown 的职责)。
+description: Turn the brainstorm direction and user decisions into a standard PRD — user stories, acceptance criteria, scope boundary (not-doing list) — with an input-completeness check that records debts explicitly. Use at Stage 3 before feature-breakdown; feature decomposition and effort belong to feature-breakdown. 中文:标准需求文档整理(含输入完备性检查)。
 version: 1.1
 updated: 2026-08-17
 ---

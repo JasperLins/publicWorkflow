@@ -1,6 +1,6 @@
 ---
 name: market-supply-demand
-description: 分析目标市场的需求侧与供给侧并测算规模(TAM/SAM/SOM),输出「做/调整后做/不做」可行性结论。当阶段 1 已推荐方向、进入阶段 2 需要市场验证时使用;不负责竞品逐家对比(那是 competitor-analysis 的职责)。
+description: Analyze demand and supply, size the market (TAM/SAM/SOM with formulas), and conclude go / adjust / no-go with confidence levels; conflicting data sources are shown side-by-side taking the conservative range. Use at Stage 2 to validate the recommended direction; per-competitor comparison belongs to competitor-analysis. 中文:市场供需与规模测算(TAM/SAM/SOM,双口径取保守)。
 version: 1.1
 updated: 2026-08-17
 ---

@@ -1,6 +1,6 @@
 ---
 name: tech-stack-selector
-description: 构造 2–3 套完整技术方案,加权打分对比后给出推荐,含系统架构图与技术风险清单。当阶段 3 功能清单已产出、进入阶段 4 需要技术选型时使用;不负责第三方服务的逐项成本调研(那是 third-party-service-scout 的职责)。
+description: Construct 2–3 full-stack options, score them with adjustable weights, and recommend one with an architecture diagram and a risk list. Use at Stage 4 once the feature list exists; per-service cost scouting (including server/hosting) belongs to third-party-service-scout. 中文:技术栈多方案加权打分选型(含架构图与风险)。
 version: 1.1
 updated: 2026-08-17
 ---

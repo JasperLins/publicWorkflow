@@ -1,6 +1,6 @@
 ---
 name: brainstorm-facilitator
-description: 引导结构化头脑风暴,把粗糙想法变成「创意全景 → 方向聚类 → 打分排序 → 推荐方向」的决策依据。当项目处于阶段 1、想法尚未成型、需要发散与收敛时使用本 skill;不适用于需求已确认后的增量讨论(那类想法直接入 memory/backlog.md 待议池)。
+description: Facilitate structured brainstorming — diverge (≥12 ideas across 4 dimensions) → mutually-exclusive clustering → formula scoring → recommended direction, turning a raw idea into decision-ready options. Use at Stage 1 before the direction is shaped; post-confirmation incremental ideas go to backlog instead. 中文:头脑风暴引导(发散→聚类→打分→推荐)。
 version: 1.1
 updated: 2026-08-17
 ---

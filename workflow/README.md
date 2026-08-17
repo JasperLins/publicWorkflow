@@ -82,10 +82,15 @@ flowchart TD
 - 完成标准:成本逐项可追溯;利润三档;报价单可直接发甲方(无内部数字泄露)。
 - 门禁:预检 → 批量提问(利润档位、报价口径、付款里程碑)。
 
-## 阶段 8 · 框架复盘(提示词优化员)
-- 调用 `doc-quality-reviewer` 做全流程终审 → `docs/08-retro/framework-retro.md`。
-- **数据驱动进化**:按 `outputs-index.md` 台账排序,优先修订「回滚率最高/修订要点最多」的 SKILL;对可客观验证的技能(app-ui-design、feature-breakdown、quotation-calculator)用本次真实运行做回归对照。
-- 把一次性优秀提示词标准化为新 SKILL.md 入库;更新 `AGENTS.md` 注册表。
+## 阶段 8 · 交付包与框架复盘(项目经理 + 提示词优化员)
+- **8.1 交付包(必做)**:调用 skill `delivery-packager`,聚合全部文档头契约生成两份终稿——
+  - `docs/07-business/client-summary.md` **客户沟通确认单**(功能摘要+报价里程碑+客户待确认事项+交付物/不含项;纯甲方视角零内部数字);
+  - `docs/08-handoff/ai-dev-handoff.md` **AI 开发移交包**(单文件总装,AI 开发代理只读它即可开工)。
+  - 完成标准:聚合未重算、client-summary 零内部数字(独立扫描)、handoff 覆盖全部生效 D/A 与原型入口。
+  - 🔒门禁:客户确认单经用户过目确认。
+- **8.2 框架复盘(提示词优化员)**:调用 `doc-quality-reviewer` 做全流程终审 → `docs/08-retro/framework-retro.md`。
+  - **数据驱动进化**:按 `outputs-index.md` 台账排序,优先修订「回滚率最高/修订要点最多」的 SKILL;对可客观验证的技能用本次真实运行做回归对照。
+  - 把一次性优秀提示词标准化为新 SKILL.md 入库;更新 `AGENTS.md` 注册表。
 
 ## 产出目录规范(路径相对**项目目录** `projects/<项目名>/`)
 

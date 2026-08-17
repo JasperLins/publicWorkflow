@@ -1,6 +1,6 @@
 ---
 name: ux-flow-designer
-description: 设计用户体验流程:用户画像、旅程图、信息架构、关键任务流程与界面清单,定义每屏目的与关键元素。当进入阶段 5、需求文档与功能清单已确认、需要为 UI 原型提供「画什么/几屏」的依据时使用;不负责视觉风格与 HTML 原型(那是 app-ui-design 的职责)。
+description: Design personas, journey maps, information architecture, key task flows (happy + error paths) and the screen inventory (per-screen purpose / main & spec states / icon / req-id, px units) that UI prototyping consumes. Use at Stage 5 after requirement and feature docs are confirmed; visual style and HTML prototypes belong to app-ui-design. 中文:用户旅程 + 信息架构 + 界面清单(px 口径)。
 version: 1.1
 updated: 2026-08-17
 ---

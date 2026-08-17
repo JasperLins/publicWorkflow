@@ -1,4 +1,4 @@
-# AGENTS.md — AI 项目开发团队前期讨论工作流(总控)v1.2
+# AGENTS.md — AI 项目开发团队前期讨论工作流(总控)v1.4
 
 > **公用框架,不限于任何一个项目**:把不成熟的想法,经头脑风暴、市场验证、需求整理、技术分析与商务测算,沉淀为可直接落地开发的企业级项目文档。
 > 主代理(你)= **项目经理**,唯一编排者与用户唯一出口;专业产出由子代理(角色)完成。细节文档按需读取,勿凭记忆发挥。
@@ -32,7 +32,7 @@
 | AI 高级提示词优化员 | `roles/prompt-optimizer.md` | 维护 skills 提示词库、质量审查、框架复盘 | 优化后的 SKILL.md、质量审查报告 |
 | 成本利润商务顾问 | `roles/business-consultant.md` | 成本核算、利润计算、甲方报价 | 成本利润表、报价单 |
 
-## 三、Skills 注册表(12 个专业技能)
+## 三、Skills 注册表(13 个专业技能)
 
 技能 = 角色产出时调用的专业提示词,存于 `skills/<name>/SKILL.md`。角色产出**必须优先调用对应技能**而非自由发挥;调用方式与统一启动模板见 `roles/README.md`。
 
@@ -47,8 +47,9 @@
 | `third-party-service-scout` | 第三方服务调研与月费测算 | 架构师 |
 | `ux-flow-designer` | 用户旅程/信息架构/界面清单 | 用户体验设计师 |
 | `app-ui-design` | 高保真静态原型一键生成(HTML+Tailwind) | 高级 UI 设计师 |
-| `ai-dev-estimator` | AI 开发周期 + token 消耗/产出比预估 | AI 开发高级工程师 |
-| `quotation-calculator` | 成本利润计算 + 甲方报价单 | 成本利润商务顾问 |
+| `ai-dev-estimator` | AI 开发周期 + token 量预估(包月配额口径) | AI 开发高级工程师 |
+| `quotation-calculator` | 行情锚定报价(品类行情×功能难度×底价红线) | 成本利润商务顾问 |
+| `delivery-packager` | 客户确认单 + AI 开发移交包(聚合不重算) | 项目经理 |
 | `doc-quality-reviewer` | 文档质量审查;门禁预检 | AI 高级提示词优化员 |
 
 ## 四、工作流总览(8 阶段)
@@ -64,7 +65,8 @@
 | 4 | 技术栈与第三方服务 | 架构师 | `docs/04-tech/`(2 份)+ 回填校准工时 | — |
 | 5 | UI/UX 与原型 | UX+UI 设计师 | `docs/05-uiux/`(2 份)+ `./UI/` | 🔒必问 |
 | 6 | AI 开发计划 | AI 开发工程师 | `docs/06-ai-plan/ai-dev-plan.md` | — |
-| 7 | 成本·利润·报价 | 商务顾问 | `docs/07-business/`(2 份) | 🔒必问 |
+| 7 | 成本·利润·报价 | 商务顾问 | `docs/07-business/`(2 份,行情锚定口径) | 🔒必问 |
+| 8 | 交付包与复盘 | 项目经理+提示词优化员 | `client-summary.md`、`docs/08-handoff/ai-dev-handoff.md`、`docs/08-retro/` | 🔒确认单过目 |
 
 用户不认可某阶段结论时只回滚该阶段,修订原因记入 `memory/decisions.md`;全部完成后提示词优化员做框架复盘(见 `roles/prompt-optimizer.md`)。
 
@@ -120,7 +122,7 @@
 ## 八、产出与文档规范
 
 - **项目目录(框架与项目分离)**:本仓库为可克隆复用的框架——框架文件(`AGENTS.md`/`roles`/`skills`/`templates`/`workflow`/`scripts`/根 `memory` 模板)只读复用;具体项目一律位于 `projects/<项目名>/`,内含 `docs/`、`memory/`、`UI/`。**本文所有 `docs/`、`memory/`、`./UI/` 路径均相对项目目录解析**。项目初始化:运行 `scripts/init-project.sh <项目名>`,或由主代理在阶段 0 按框架 `memory/` 模板创建。
-- 产出子目录:`docs/01-brainstorm/`、`02-market/`、`03-requirements/`、`04-tech/`、`05-uiux/`、`06-ai-plan/`、`07-business/`;UI 原型在项目目录 `./UI/`。
+- 产出子目录:`docs/01-brainstorm/`、`02-market/`、`03-requirements/`、`04-tech/`、`05-uiux/`、`06-ai-plan/`、`07-business/`、`08-handoff/`、`08-retro/`;UI 原型在项目目录 `./UI/`。
 - 文档命名 `kebab-case.md`;头部含「版本/日期/状态(草稿|已确认)/作者(角色名)」。
 - **文档头契约**:每份产出正文前附一节「📌 文档头契约」——关键结论(≤5 条)/ 关键假设与置信度 / 可引用承诺(下游可直接引用的数字)/ 未决问题。下游注入优先取该节。
 - 阶段批量问题清单统一落盘为 `docs/<阶段目录>/questions-stageN.md`(模板内不再内嵌问题节)。

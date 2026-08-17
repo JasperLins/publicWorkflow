@@ -1,6 +1,6 @@
 ---
 name: app-ui-design
-description: 把已确认的界面清单与 UI 风格规范直接生成为高保真静态原型站(HTML+Tailwind+FontAwesome,输出到 ./UI/)。当阶段 5 已产出 ux-flows.md(界面清单)与 ui-spec.md(风格)且需要可浏览、可交给 AI 开发复现的原型时使用本 skill;仅做静态原型,不实现业务逻辑与数据交互,不适用于线框图或交互演示需求。
+description: Generate a high-fidelity static prototype site (HTML+Tailwind+FontAwesome, iframe gallery in ./UI/) from the confirmed screen list and UI spec, ready for AI devs to reproduce. Use at Stage 5 when ux-flows.md and ui-spec.md are confirmed; static prototypes only, no business logic. 中文:高保真静态原型一键生成。
 version: 1.1
 updated: 2026-08-17
 ---

@@ -1,6 +1,6 @@
 ---
 name: doc-quality-reviewer
-description: 对阶段产出文档做完整性/跨文档一致性/可开发性三维审查,输出缺口与修复建议;亦用于门禁阶段的批量提问前预检(按阶段完成标准自检,不合格就地修复一轮)。当任何文档落盘后需要 QA、或门禁阶段(2/3/5/7)提问前需要预检时使用;不直接重写他人文档,只给具体修复建议。
+description: Three-dimension document QA (completeness / cross-doc consistency / buildability) plus a gate pre-check mode that self-reviews stage outputs against completion criteria and fixes issues once before asking the user. Use after any document lands, or before a gated stage's (2/3/5/7) batch questions; advises concrete fixes, never rewrites others' docs. 中文:文档三维审查 + 门禁预检(修复一轮再问用户)。
 version: 1.1
 updated: 2026-08-17
 ---
