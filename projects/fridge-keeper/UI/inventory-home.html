@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--
+  S02 · 库存首页 inventory-home.html | 冰箱食材管家 · 高保真静态原型(批 1)
+  画布:393×852 纯屏(圆角设备壳由 index.html 提供);iOS 状态栏 + TabBar(D-026:4 位 + 中央凸起📷)
+  单位规则:ui-spec.md 字号/间距全部 px,本文件等值直接使用(pt→px 换算不适用)
+  CDN:Tailwind v4 browser + FontAwesome 6.5.2(jsDelivr 主源,2026-08-17 curl 实测 200)
+  图标映射:SF Symbol refrigerator → fa-box-archive(FA6 免费版无冰箱图标,箱体存储语义替代)
+  图片策略:食材缩略图 = CSS 渐变 + FA 图标组合(设计选择,非占位符);本屏无大图
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S02 库存首页 · 冰箱食材管家</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+</head>
+<body class="w-[393px] h-[852px] mx-auto bg-[#F6F8F4] overflow-x-hidden"
+      style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','PingFang SC','Helvetica Neue',sans-serif">
+
+<!-- iOS 状态栏(浅色) -->
+<div class="fixed top-0 w-[393px] z-40 bg-[#F6F8F4]">
+  <div class="relative h-[54px] flex items-center justify-between px-7">
+    <span class="text-[15px] font-semibold text-[#1F2A24]">9:41</span>
+    <!-- 灵动岛 -->
+    <div class="absolute left-1/2 -translate-x-1/2 top-[10px] w-[120px] h-[34px] bg-black rounded-full"></div>
+    <div class="flex items-center gap-[6px] text-[#1F2A24]">
+      <i class="fa-solid fa-signal text-[12px]"></i>
+      <i class="fa-solid fa-wifi text-[13px]"></i>
+      <i class="fa-solid fa-battery-full text-[16px]"></i>
+    </div>
+  </div>
+</div>
+
+<main class="pt-[54px] pb-[112px] px-4">
+  <!-- 页面大标题 28px -->
+  <div class="flex items-end justify-between pt-2 pb-3">
+    <div>
+      <h1 class="text-[28px] leading-[34px] font-bold text-[#1F2A24]">冰箱库存</h1>
+      <p class="text-[12px] text-[#7A8780] mt-1">共 23 项 · <span class="text-[#B45309] font-medium">5 项临期</span> · 剩余保质期升序</p>
+    </div>
+    <button class="w-[44px] h-[44px] rounded-full bg-white shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)] flex items-center justify-center active:scale-95">
+      <i class="fa-solid fa-plus text-[18px] text-[#15803D]"></i>
+    </button>
+  </div>
+
+  <!-- 搜索框 -->
+  <div class="h-[44px] rounded-xl bg-white border border-[#E6EBE6] px-3 flex items-center gap-2">
+    <i class="fa-solid fa-magnifying-glass text-[14px] text-[#B9C2BB]"></i>
+    <span class="text-[15px] text-[#B9C2BB]">搜索食材,如「番茄」</span>
+  </div>
+
+  <!-- 分类筛选 chips -->
+  <div class="flex gap-2 mt-3 overflow-x-auto">
+    <span class="shrink-0 h-[32px] px-4 rounded-full bg-[#DCFCE7] text-[#15803D] text-[12px] font-medium flex items-center">全部 23</span>
+    <span class="shrink-0 h-[32px] px-4 rounded-full bg-white border border-[#E6EBE6] text-[#44514A] text-[12px] flex items-center">蔬菜 9</span>
+    <span class="shrink-0 h-[32px] px-4 rounded-full bg-white border border-[#E6EBE6] text-[#44514A] text-[12px] flex items-center">肉禽 3</span>
+    <span class="shrink-0 h-[32px] px-4 rounded-full bg-white border border-[#E6EBE6] text-[#44514A] text-[12px] flex items-center">蛋乳 4</span>
+    <span class="shrink-0 h-[32px] px-4 rounded-full bg-white border border-[#E6EBE6] text-[#44514A] text-[12px] flex items-center">主食 5</span>
+    <span class="shrink-0 h-[32px] px-4 rounded-full bg-white border border-[#E6EBE6] text-[#44514A] text-[12px] flex items-center">调味 2</span>
+  </div>
+
+  <!-- 过期一键清理横幅(FR-06) -->
+  <div class="mt-3 rounded-2xl bg-[#FEE2E2] px-4 py-3 flex items-center gap-3">
+    <i class="fa-solid fa-circle-exclamation text-[18px] text-[#DC2626]"></i>
+    <p class="flex-1 text-[12px] text-[#DC2626] leading-4">已过期 1 项:菠菜 · 过期 2 天,建议清理</p>
+    <button class="h-[30px] px-3 rounded-full bg-[#EF4444] text-white text-[12px] font-medium active:scale-95">一键清理</button>
+  </div>
+
+  <!-- 临期置顶区 -->
+  <h2 class="mt-5 mb-2 text-[16px] font-medium text-[#1F2A24]">临期置顶 <span class="text-[12px] font-normal text-[#B45309]">· 优先吃掉这些</span></h2>
+  <div class="space-y-3">
+    <!-- 列表行:缩略图(CSS 渐变+图标,设计选择非占位符)+ 名称/数量 + 天数徽章 -->
+    <div class="bg-white rounded-2xl p-3 flex items-center gap-3 shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center bg-gradient-to-br from-[#A5D6A7] to-[#43A047]"><i class="fa-solid fa-leaf text-[20px] text-white"></i></div>
+      <div class="flex-1 min-w-0">
+        <p class="text-[16px] font-medium text-[#1F2A24]">生菜</p>
+        <p class="text-[12px] text-[#7A8780] mt-0.5">半斤 · 冷藏 · 08-14 入库</p>
+      </div>
+      <span class="h-[26px] px-2.5 rounded-full bg-[#FEE2E2] text-[#DC2626] text-[12px] font-medium flex items-center">今天到期</span>
+      <i class="fa-solid fa-chevron-right text-[12px] text-[#B9C2BB]"></i>
+    </div>
+
+    <div class="bg-white rounded-2xl p-3 flex items-center gap-3 shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center bg-gradient-to-br from-[#BBDEFB] to-[#64B5F6]"><i class="fa-solid fa-bottle-water text-[18px] text-white"></i></div>
+      <div class="flex-1 min-w-0">
+        <p class="text-[16px] font-medium text-[#1F2A24]">鲜牛奶</p>
+        <p class="text-[12px] text-[#7A8780] mt-0.5">1 盒 950ml · 冷藏 · 08-11 入库</p>
+      </div>
+      <span class="h-[26px] px-2.5 rounded-full bg-[#FEE2E2] text-[#DC2626] text-[12px] font-medium flex items-center">明天到期</span>
+      <i class="fa-solid fa-chevron-right text-[12px] text-[#B9C2BB]"></i>
+    </div>
+
+    <div class="bg-white rounded-2xl p-3 flex items-center gap-3 shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center bg-gradient-to-br from-[#FF8A80] to-[#E53935]"><i class="fa-solid fa-apple-whole text-[20px] text-white"></i></div>
+      <div class="flex-1 min-w-0">
+        <p class="text-[16px] font-medium text-[#1F2A24]">番茄</p>
+        <p class="text-[12px] text-[#7A8780] mt-0.5">4 个 · 冷藏 · 08-15 整拍入库</p>
+      </div>
+      <span class="h-[26px] px-2.5 rounded-full bg-[#FEF3C7] text-[#B45309] text-[12px] font-medium flex items-center">剩 2 天</span>
+      <i class="fa-solid fa-chevron-right text-[12px] text-[#B9C2BB]"></i>
+    </div>
+
+    <div class="bg-white rounded-2xl p-3 flex items-center gap-3 shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center bg-gradient-to-br from-[#81C784] to-[#2E7D32]"><i class="fa-solid fa-seedling text-[20px] text-white"></i></div>
+      <div class="flex-1 min-w-0">
+        <p class="text-[16px] font-medium text-[#1F2A24]">西兰花</p>
+        <p class="text-[12px] text-[#7A8780] mt-0.5">1 颗 · 冷藏 · 08-15 整拍入库</p>
+      </div>
+      <span class="h-[26px] px-2.5 rounded-full bg-[#FEF3C7] text-[#B45309] text-[12px] font-medium flex items-center">剩 3 天</span>
+      <i class="fa-solid fa-chevron-right text-[12px] text-[#B9C2BB]"></i>
+    </div>
+
+    <div class="bg-white rounded-2xl p-3 flex items-center gap-3 shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center bg-gradient-to-br from-[#FFCDD2] to-[#E57373]"><i class="fa-solid fa-drumstick-bite text-[18px] text-white"></i></div>
+      <div class="flex-1 min-w-0">
+        <p class="text-[16px] font-medium text-[#1F2A24]">五花肉</p>
+        <p class="text-[12px] text-[#7A8780] mt-0.5">500 克 · 冷冻 · 08-02 入库</p>
+      </div>
+      <span class="h-[26px] px-2.5 rounded-full bg-[#FEF3C7] text-[#B45309] text-[12px] font-medium flex items-center">剩 3 天</span>
+      <i class="fa-solid fa-chevron-right text-[12px] text-[#B9C2BB]"></i>
+    </div>
+  </div>
+
+  <!-- 其余食材 -->
+  <h2 class="mt-6 mb-2 text-[16px] font-medium text-[#1F2A24]">其余食材</h2>
+  <div class="space-y-3">
+    <div class="bg-white rounded-2xl p-3 flex items-center gap-3 shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center bg-gradient-to-br from-[#FFE0B2] to-[#FFB74D]"><i class="fa-solid fa-egg text-[18px] text-white"></i></div>
+      <div class="flex-1 min-w-0"><p class="text-[16px] font-medium text-[#1F2A24]">鸡蛋</p><p class="text-[12px] text-[#7A8780] mt-0.5">8 个 · 冷藏</p></div>
+      <span class="h-[26px] px-2.5 rounded-full bg-[#DCFCE7] text-[#15803D] text-[12px] font-medium flex items-center">剩 12 天</span>
+      <i class="fa-solid fa-chevron-right text-[12px] text-[#B9C2BB]"></i>
+    </div>
+    <div class="bg-white rounded-2xl p-3 flex items-center gap-3 shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center bg-gradient-to-br from-[#FFCC80] to-[#F57C00]"><i class="fa-solid fa-carrot text-[20px] text-white"></i></div>
+      <div class="flex-1 min-w-0"><p class="text-[16px] font-medium text-[#1F2A24]">胡萝卜</p><p class="text-[12px] text-[#7A8780] mt-0.5">3 根 · 冷藏</p></div>
+      <span class="h-[26px] px-2.5 rounded-full bg-[#DCFCE7] text-[#15803D] text-[12px] font-medium flex items-center">剩 9 天</span>
+      <i class="fa-solid fa-chevron-right text-[12px] text-[#B9C2BB]"></i>
+    </div>
+    <div class="bg-white rounded-2xl p-3 flex items-center gap-3 shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center bg-gradient-to-br from-[#D1C4E9] to-[#7E57C2]"><i class="fa-solid fa-jar text-[16px] text-white"></i></div>
+      <div class="flex-1 min-w-0"><p class="text-[16px] font-medium text-[#1F2A24]">希腊酸奶</p><p class="text-[12px] text-[#7A8780] mt-0.5">6 杯 · 冷藏</p></div>
+      <span class="h-[26px] px-2.5 rounded-full bg-[#DCFCE7] text-[#15803D] text-[12px] font-medium flex items-center">剩 18 天</span>
+      <i class="fa-solid fa-chevron-right text-[12px] text-[#B9C2BB]"></i>
+    </div>
+    <div class="bg-white rounded-2xl p-3 flex items-center gap-3 shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center bg-gradient-to-br from-[#FFF59D] to-[#FBC02D]"><i class="fa-solid fa-cube text-[16px] text-white"></i></div>
+      <div class="flex-1 min-w-0"><p class="text-[16px] font-medium text-[#1F2A24]">北豆腐</p><p class="text-[12px] text-[#7A8780] mt-0.5">1 盒 · 冷藏</p></div>
+      <span class="h-[26px] px-2.5 rounded-full bg-[#DCFCE7] text-[#15803D] text-[12px] font-medium flex items-center">剩 4 天</span>
+      <i class="fa-solid fa-chevron-right text-[12px] text-[#B9C2BB]"></i>
+    </div>
+    <div class="bg-white rounded-2xl p-3 flex items-center gap-3 shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="w-[44px] h-[44px] rounded-xl flex items-center justify-center bg-gradient-to-br from-[#E0E0E0] to-[#9E9E9E]"><i class="fa-solid fa-bowl-rice text-[18px] text-white"></i></div>
+      <div class="flex-1 min-w-0"><p class="text-[16px] font-medium text-[#1F2A24]">东北大米</p><p class="text-[12px] text-[#7A8780] mt-0.5">2.5 千克 · 常温</p></div>
+      <span class="h-[26px] px-2.5 rounded-full bg-[#EEF1EE] text-[#7A8780] text-[12px] font-medium flex items-center">长效</span>
+      <i class="fa-solid fa-chevron-right text-[12px] text-[#B9C2BB]"></i>
+    </div>
+  </div>
+
+  <!-- ===== 组件规格态:虚线边框 + 「状态样式 · 触发条件」标注并列呈现 ===== -->
+  <div class="mt-6 rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+    <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">空库存态 · 库存为 0(新用户落地)</span>
+    <div class="flex flex-col items-center py-5">
+      <div class="w-[56px] h-[56px] rounded-full bg-gradient-to-br from-[#A5D6A7] to-[#2E7D32] flex items-center justify-center"><i class="fa-solid fa-box-archive text-[24px] text-white"></i></div>
+      <p class="text-[16px] font-medium text-[#1F2A24] mt-3">冰箱还是空的</p>
+      <p class="text-[15px] text-[#7A8780] mt-1 text-center">采购回家拍一张,10 秒录完全部食材</p>
+      <button class="mt-4 h-[44px] px-6 rounded-xl bg-[#15803D] text-white text-[16px] font-semibold active:scale-95">去拍一张</button>
+    </div>
+  </div>
+
+  <div class="mt-3 rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+    <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">搜索无结果态 · 搜索词在库存中无匹配</span>
+    <div class="flex items-center gap-3 py-3">
+      <i class="fa-solid fa-magnifying-glass text-[16px] text-[#B9C2BB]"></i>
+      <p class="text-[15px] text-[#7A8780]">没有找到「菠菜」——它可能已被清理</p>
+    </div>
+    <button class="h-[36px] px-4 rounded-full bg-[#DCFCE7] text-[#15803D] text-[15px] font-medium">查看全部 23 项</button>
+  </div>
+
+  <div class="mt-3 rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+    <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">临期筛选落地态 · 点开 09:00 临期推送进入(FR-07)</span>
+    <div class="flex items-center gap-2 py-3">
+      <i class="fa-solid fa-chevron-left text-[14px] text-[#44514A]"></i>
+      <p class="text-[20px] font-semibold text-[#1F2A24]">临期食材</p>
+      <span class="h-[26px] px-2.5 rounded-full bg-[#FEF3C7] text-[#B45309] text-[12px] font-medium flex items-center">仅看临期 5 项</span>
+    </div>
+    <p class="text-[12px] text-[#7A8780]">列表仅保留 5 个临期项,排序与主态一致</p>
+  </div>
+
+  <div class="mt-3 rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+    <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">通知被拒临期横幅态 · 通知权限关闭时的兜底提醒(FR-07)</span>
+    <div class="mt-3 rounded-xl bg-[#FEF3C7] px-3 py-2.5 flex items-center gap-2">
+      <i class="fa-solid fa-bell text-[14px] text-[#B45309]"></i>
+      <p class="flex-1 text-[12px] text-[#B45309]">5 项食材 3 天内到期,开启提醒不错过</p>
+      <button class="text-[12px] text-[#B45309] font-medium">去开启</button>
+    </div>
+  </div>
+</main>
+
+<!-- TabBar(D-026:首发 4 位 + 中央凸起📷;激活=库存) -->
+<nav class="fixed bottom-0 w-[393px] z-40 bg-white/95 backdrop-blur border-t border-[#E6EBE6]">
+  <div class="relative h-[60px] px-2 flex">
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-box-archive text-[20px] text-[#15803D]"></i><span class="text-[12px] text-[#15803D] font-medium">库存</span>
+    </div>
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-utensils text-[20px] text-[#9AA69E]"></i><span class="text-[12px] text-[#9AA69E]">今天吃啥</span>
+    </div>
+    <div class="flex-1 relative">
+      <button class="absolute left-1/2 -translate-x-1/2 -top-[20px] w-[56px] h-[56px] rounded-full bg-[#15803D] border-[3px] border-white shadow-[0_8px_24px_rgba(31,42,36,.16)] flex items-center justify-center active:scale-95">
+        <i class="fa-solid fa-camera text-[22px] text-white"></i>
+      </button>
+    </div>
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-gear text-[20px] text-[#9AA69E]"></i><span class="text-[12px] text-[#9AA69E]">设置</span>
+    </div>
+  </div>
+  <div class="absolute bottom-[8px] left-1/2 -translate-x-1/2 w-[134px] h-[5px] rounded-full bg-black/80"></div>
+</nav>
+</body>
+</html>

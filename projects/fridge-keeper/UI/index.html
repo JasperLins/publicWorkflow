@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+  index.html · 冰箱食材管家 高保真静态原型总览 | 阶段 5b 产出(批 3)
+  结构:iFrame 平铺嵌入全部 12 个屏文件(不跳转)+ 设备壳圆角外框(外框仅在此实现,SKILL 约定)
+  iframe 固定 393×852,内容超出时允许屏内纵向滚动(S01 三分页 / 规格态标注区)
+  CDN:Tailwind v4 browser + FontAwesome 6.5.2(jsDelivr 主源,2026-08-17 curl 实测 200,无需降级)
+  依据:ux-flows.md 界面清单 S01–S12(D-028 全 12 屏;S12 为 P1 占位态);ui-spec.md 色彩/字号/组件
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冰箱食材管家 · 高保真静态原型(12 屏)</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+</head>
+<body class="bg-[#141917] min-h-screen"
+      style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','PingFang SC','Helvetica Neue',sans-serif">
+
+<!-- 页头 -->
+<header class="px-10 pt-10 pb-2 max-w-[1500px] mx-auto">
+  <p class="text-[12px] text-[#7CE495]">冰箱食材管家 · iOS MVP · 阶段 5b / app-ui-design SKILL v1.1</p>
+  <h1 class="text-[28px] font-bold text-white mt-1">高保真静态原型总览</h1>
+  <p class="text-[15px] text-white/60 mt-2 leading-[22px]">
+    12 屏(D-028:P0×9 + P1×3,S12 订阅为占位态)· iPhone 15 Pro 393×852 · 主色「鲜蔬绿」#16A34A(ui-spec.md 方向 A,待批量确认)
+  </p>
+  <p class="text-[12px] text-white/40 mt-1.5">
+    CDN:jsDelivr 主源(2026-08-17 curl 实测 200)· 虚线框 = 组件规格态(空态/异常态,静态并列演示)· S01 为 1 文件 3 分页(iframe 内纵向滚动)
+  </p>
+</header>
+
+<!-- 设备壳平铺 -->
+<main class="flex flex-wrap gap-10 px-10 pb-16 pt-6 max-w-[1500px] mx-auto">
+
+  <!-- S01 -->
+  <div>
+    <div class="w-[413px] rounded-[54px] bg-black p-[10px] shadow-[0_20px_60px_rgba(0,0,0,.5)]">
+      <iframe src="onboarding.html" title="S01 首启引导" class="w-[393px] h-[852px] rounded-[44px] bg-white"></iframe>
+    </div>
+    <p class="text-[12px] text-white/80 mt-3 w-[393px]"><span class="text-[#7CE495] font-semibold">S01</span> · 首启引导 · 三支柱价值传达 + 开启提醒(1 文件 3 分页,纵向滚动)</p>
+  </div>
+
+  <!-- S02 -->
+  <div>
+    <div class="w-[413px] rounded-[54px] bg-black p-[10px] shadow-[0_20px_60px_rgba(0,0,0,.5)]">
+      <iframe src="inventory-home.html" title="S02 库存首页" class="w-[393px] h-[852px] rounded-[44px] bg-white"></iframe>
+    </div>
+    <p class="text-[12px] text-white/80 mt-3 w-[393px]"><span class="text-[#7CE495] font-semibold">S02</span> · 库存首页 · 默认落地,临期置顶一眼可见(Tab1)</p>
+  </div>
+
+  <!-- S03 -->
+  <div>
+    <div class="w-[413px] rounded-[54px] bg-black p-[10px] shadow-[0_20px_60px_rgba(0,0,0,.5)]">
+      <iframe src="item-detail.html" title="S03 食材详情" class="w-[393px] h-[852px] rounded-[44px] bg-white"></iframe>
+    </div>
+    <p class="text-[12px] text-white/80 mt-3 w-[393px]"><span class="text-[#7CE495] font-semibold">S03</span> · 食材详情/编辑 · 改数量保质期、标记已用、删除</p>
+  </div>
+
+  <!-- S04 -->
+  <div>
+    <div class="w-[413px] rounded-[54px] bg-black p-[10px] shadow-[0_20px_60px_rgba(0,0,0,.5)]">
+      <iframe src="camera-scan.html" title="S04 整拍拍照页" class="w-[393px] h-[852px] rounded-[44px] bg-black"></iframe>
+    </div>
+    <p class="text-[12px] text-white/80 mt-3 w-[393px]"><span class="text-[#7CE495] font-semibold">S04</span> · 整拍拍照页 · ≤10 秒链路起点(中央📷,额度徽章 18/30)</p>
+  </div>
+
+  <!-- S05 -->
+  <div>
+    <div class="w-[413px] rounded-[54px] bg-black p-[10px] shadow-[0_20px_60px_rgba(0,0,0,.5)]">
+      <iframe src="recognition-confirm.html" title="S05 识别结果确认" class="w-[393px] h-[852px] rounded-[44px] bg-white"></iframe>
+    </div>
+    <p class="text-[12px] text-white/80 mt-3 w-[393px]"><span class="text-[#7CE495] font-semibold">S05</span> · 识别结果确认 · 差异化主战场:候选切换 + 一键入库</p>
+  </div>
+
+  <!-- S06 -->
+  <div>
+    <div class="w-[413px] rounded-[54px] bg-black p-[10px] shadow-[0_20px_60px_rgba(0,0,0,.5)]">
+      <iframe src="manual-add.html" title="S06 手动录入" class="w-[393px] h-[852px] rounded-[44px] bg-white"></iframe>
+    </div>
+    <p class="text-[12px] text-white/80 mt-3 w-[393px]"><span class="text-[#7CE495] font-semibold">S06</span> · 手动录入 · 免费无限兜底通道(500+ 食材库)</p>
+  </div>
+
+  <!-- S07 -->
+  <div>
+    <div class="w-[413px] rounded-[54px] bg-black p-[10px] shadow-[0_20px_60px_rgba(0,0,0,.5)]">
+      <iframe src="recipe-today.html" title="S07 今天吃啥" class="w-[393px] h-[852px] rounded-[44px] bg-white"></iframe>
+    </div>
+    <p class="text-[12px] text-white/80 mt-3 w-[393px]"><span class="text-[#7CE495] font-semibold">S07</span> · 今天吃啥 · 只推能做的菜,优先消化临期(Tab2)</p>
+  </div>
+
+  <!-- S08 -->
+  <div>
+    <div class="w-[413px] rounded-[54px] bg-black p-[10px] shadow-[0_20px_60px_rgba(0,0,0,.5)]">
+      <iframe src="recipe-detail.html" title="S08 菜谱详情" class="w-[393px] h-[852px] rounded-[44px] bg-white"></iframe>
+    </div>
+    <p class="text-[12px] text-white/80 mt-3 w-[393px]"><span class="text-[#7CE495] font-semibold">S08</span> · 菜谱详情 · 用料库存匹配 +「做了这道菜」一键核销</p>
+  </div>
+
+  <!-- S09 -->
+  <div>
+    <div class="w-[413px] rounded-[54px] bg-black p-[10px] shadow-[0_20px_60px_rgba(0,0,0,.5)]">
+      <iframe src="quota-limit.html" title="S09 额度用尽引导" class="w-[393px] h-[852px] rounded-[44px] bg-black"></iframe>
+    </div>
+    <p class="text-[12px] text-white/80 mt-3 w-[393px]"><span class="text-[#7CE495] font-semibold">S09</span> · 额度用尽引导 · D-027 半屏弹层,手动出路永远在上</p>
+  </div>
+
+  <!-- S10 -->
+  <div>
+    <div class="w-[413px] rounded-[54px] bg-black p-[10px] shadow-[0_20px_60px_rgba(0,0,0,.5)]">
+      <iframe src="settings.html" title="S10 设置" class="w-[393px] h-[852px] rounded-[44px] bg-white"></iframe>
+    </div>
+    <p class="text-[12px] text-white/80 mt-3 w-[393px]"><span class="text-[#7CE495] font-semibold">S10</span> · 设置 · 提醒时点 / iCloud 备份 / 订阅入口(Tab4)</p>
+  </div>
+
+  <!-- S11 -->
+  <div>
+    <div class="w-[413px] rounded-[54px] bg-black p-[10px] shadow-[0_20px_60px_rgba(0,0,0,.5)]">
+      <iframe src="shopping-overview.html" title="S11 购物速览" class="w-[393px] h-[852px] rounded-[44px] bg-white"></iframe>
+    </div>
+    <p class="text-[12px] text-white/80 mt-3 w-[393px]"><span class="text-[#7CE495] font-semibold">S11</span> · 购物速览 · P1;分类计数一屏,含 TabBar 5 位变体(Tab3)</p>
+  </div>
+
+  <!-- S12 -->
+  <div>
+    <div class="w-[413px] rounded-[54px] bg-black p-[10px] shadow-[0_20px_60px_rgba(0,0,0,.5)]">
+      <iframe src="subscribe.html" title="S12 订阅介绍" class="w-[393px] h-[852px] rounded-[44px] bg-white"></iframe>
+    </div>
+    <p class="text-[12px] text-white/80 mt-3 w-[393px]"><span class="text-[#FBBF24] font-semibold">S12</span> · 订阅介绍 · P1 占位态(D-028),30 vs 300 + ¥12/¥98 档位</p>
+  </div>
+</main>
+
+<footer class="px-10 pb-12 max-w-[1500px] mx-auto">
+  <p class="text-[12px] text-white/40 leading-[18px]">
+    生成:高级 UI 设计师(阶段 5b)· 2026-08-17 · 13 文件(12 屏 + 本页)· 图例:FA6 免费版无冰箱图标,Tab1 以 fa-box-archive 替代(各屏注释已标注);
+    食材缩略图为 CSS 渐变+图标组合(设计选择,非占位符),大图为 Unsplash 直链(已实测可达)。
+  </p>
+</footer>
+</body>
+</html>

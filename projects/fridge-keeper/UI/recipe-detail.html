@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--
+  S08 · 菜谱详情 recipe-detail.html | 冰箱食材管家 · 高保真静态原型(批 2)
+  画布:393×852 纯屏;用料库存匹配 +「做了这道菜」一键核销完成闭环(FR-08/09)
+  单位规则:ui-spec.md 全 px 等值直用(无 pt 换算)
+  CDN:Tailwind v4 browser + FontAwesome 6.5.2(jsDelivr 主源,2026-08-17 curl 实测 200)
+  图片策略:封面 = Unsplash 实拍直链(实测 200)
+  状态演示:分享按钮 默认/按压 并列 + 导出购物清单 禁用态(SKILL 步骤 5 状态演示规则)
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S08 菜谱详情 · 冰箱食材管家</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+</head>
+<body class="w-[393px] h-[852px] mx-auto bg-[#F6F8F4] overflow-x-hidden"
+      style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','PingFang SC','Helvetica Neue',sans-serif">
+
+<!-- iOS 状态栏(悬浮于封面图上,深色版) -->
+<div class="fixed top-0 w-[393px] z-40">
+  <div class="relative h-[54px] flex items-center justify-between px-7">
+    <span class="text-[15px] font-semibold text-white" style="text-shadow:0 1px 4px rgba(0,0,0,.4)">9:41</span>
+    <div class="absolute left-1/2 -translate-x-1/2 top-[10px] w-[120px] h-[34px] bg-black rounded-full"></div>
+    <div class="flex items-center gap-[6px] text-white" style="text-shadow:0 1px 4px rgba(0,0,0,.4)">
+      <i class="fa-solid fa-signal text-[12px]"></i><i class="fa-solid fa-wifi text-[13px]"></i><i class="fa-solid fa-battery-full text-[16px]"></i>
+    </div>
+  </div>
+</div>
+
+<main class="pb-[130px]">
+  <!-- 封面 + 返回/分享(悬浮) -->
+  <div class="relative h-[220px]">
+    <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=800&q=80" alt="家常番茄炒蛋(封面示意)" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent"></div>
+    <button class="absolute left-4 top-[58px] w-[36px] h-[36px] rounded-full bg-black/40 backdrop-blur flex items-center justify-center active:scale-95"><i class="fa-solid fa-chevron-left text-[16px] text-white"></i></button>
+    <!-- 状态演示:分享 默认态 与 按压态(active)并列实例 -->
+    <button class="absolute right-[60px] top-[58px] w-[36px] h-[36px] rounded-full bg-black/40 backdrop-blur flex items-center justify-center active:scale-95"><i class="fa-solid fa-arrow-up-from-bracket text-[15px] text-white"></i></button>
+    <button class="absolute right-4 top-[58px] w-[36px] h-[36px] rounded-full bg-white/95 scale-95 flex items-center justify-center"><i class="fa-solid fa-arrow-up-from-bracket text-[15px] text-[#15803D]"></i></button>
+  </div>
+
+  <div class="px-4 -mt-6 relative">
+    <!-- 标题卡 -->
+    <div class="bg-white rounded-2xl p-4 shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="flex items-center gap-2 flex-wrap">
+        <h1 class="text-[20px] font-semibold text-[#1F2A24]">番茄炒蛋</h1>
+        <span class="h-[24px] px-2 rounded-full bg-[#B45309] text-white text-[12px] font-medium leading-[24px]">用掉 2 项临期</span>
+      </div>
+      <div class="flex items-center gap-3 mt-2 text-[12px] text-[#7A8780]">
+        <span><i class="fa-solid fa-clock text-[12px] mr-1"></i>10 分钟</span>
+        <span>简单</span><span>2 人份</span><span>家常菜</span>
+      </div>
+      <!-- 营养标签 -->
+      <div class="flex gap-2 mt-3">
+        <span class="h-[24px] px-2 rounded-full bg-[#F6F8F4] text-[#7A8780] text-[12px] leading-[24px]">218 kcal</span>
+        <span class="h-[24px] px-2 rounded-full bg-[#F6F8F4] text-[#7A8780] text-[12px] leading-[24px]">蛋白质 11g</span>
+        <span class="h-[24px] px-2 rounded-full bg-[#F6F8F4] text-[#7A8780] text-[12px] leading-[24px]">脂肪 14g</span>
+      </div>
+    </div>
+
+    <!-- 用料清单(逐项库存匹配) -->
+    <h2 class="mt-4 mb-2 text-[16px] font-medium text-[#1F2A24]">用料 <span class="text-[12px] font-normal text-[#7A8780]">· 与你的库存实时匹配</span></h2>
+    <div class="bg-white rounded-2xl shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)] overflow-hidden">
+      <div class="px-4 py-3 flex items-center gap-3 border-b border-[#F0F3F0]">
+        <div class="w-[36px] h-[36px] rounded-lg flex items-center justify-center bg-gradient-to-br from-[#FF8A80] to-[#E53935]"><i class="fa-solid fa-apple-whole text-[15px] text-white"></i></div>
+        <div class="flex-1">
+          <p class="text-[15px] text-[#1F2A24]">番茄 <span class="text-[#44514A]">× 2 个</span></p>
+          <p class="text-[12px] text-[#B45309] mt-0.5">现存 4 个 · 剩 2 天,做完正好消化临期</p>
+        </div>
+        <i class="fa-solid fa-circle-check text-[18px] text-[#15803D]"></i>
+      </div>
+      <div class="px-4 py-3 flex items-center gap-3 border-b border-[#F0F3F0]">
+        <div class="w-[36px] h-[36px] rounded-lg flex items-center justify-center bg-gradient-to-br from-[#FFE0B2] to-[#FFB74D]"><i class="fa-solid fa-egg text-[14px] text-white"></i></div>
+        <div class="flex-1">
+          <p class="text-[15px] text-[#1F2A24]">鸡蛋 <span class="text-[#44514A]">× 3 个</span></p>
+          <p class="text-[12px] text-[#7A8780] mt-0.5">现存 8 个 · 剩 12 天</p>
+        </div>
+        <i class="fa-solid fa-circle-check text-[18px] text-[#15803D]"></i>
+      </div>
+      <div class="px-4 py-3 flex items-center gap-3 border-b border-[#F0F3F0]">
+        <div class="w-[36px] h-[36px] rounded-lg flex items-center justify-center bg-gradient-to-br from-[#C8E6C9] to-[#66BB6A]"><i class="fa-solid fa-leaf text-[14px] text-white"></i></div>
+        <div class="flex-1">
+          <p class="text-[15px] text-[#1F2A24]">小葱 <span class="text-[#44514A]">× 1 根</span></p>
+          <p class="text-[12px] text-[#DC2626] mt-0.5">缺料 · 可用 3 瓣蒜替代,不影响主味</p>
+        </div>
+        <i class="fa-solid fa-circle-xmark text-[18px] text-[#EF4444]"></i>
+      </div>
+      <div class="px-4 py-3 flex items-center gap-3">
+        <div class="w-[36px] h-[36px] rounded-lg flex items-center justify-center bg-gradient-to-br from-[#E0E0E0] to-[#9E9E9E]"><i class="fa-solid fa-jar text-[13px] text-white"></i></div>
+        <div class="flex-1">
+          <p class="text-[15px] text-[#1F2A24]">白糖 · 盐 <span class="text-[#44514A]">各适量</span></p>
+          <p class="text-[12px] text-[#7A8780] mt-0.5">常备调味,不跟踪库存</p>
+        </div>
+        <i class="fa-solid fa-circle-check text-[18px] text-[#15803D]"></i>
+      </div>
+    </div>
+
+    <!-- 步骤折叠列表 -->
+    <h2 class="mt-4 mb-2 text-[16px] font-medium text-[#1F2A24]">做法 <span class="text-[12px] font-normal text-[#7A8780]">· 4 步</span></h2>
+    <div class="bg-white rounded-2xl shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)] overflow-hidden">
+      <div class="px-4 py-3.5 flex gap-3 border-b border-[#F0F3F0]">
+        <span class="w-[24px] h-[24px] rounded-full bg-[#15803D] text-white text-[12px] font-semibold flex items-center justify-center shrink-0">1</span>
+        <div class="flex-1"><p class="text-[15px] text-[#1F2A24]">番茄切滚刀块,鸡蛋加少许盐打散</p></div>
+        <i class="fa-solid fa-chevron-right text-[12px] text-[#B9C2BB] rotate-90 mt-1"></i>
+      </div>
+      <div class="px-4 py-3.5 flex gap-3 border-b border-[#F0F3F0]">
+        <span class="w-[24px] h-[24px] rounded-full bg-[#15803D] text-white text-[12px] font-semibold flex items-center justify-center shrink-0">2</span>
+        <div class="flex-1"><p class="text-[15px] text-[#1F2A24]">热锅宽油,蛋液炒至凝固盛出(约 20 秒)</p></div>
+        <i class="fa-solid fa-chevron-right text-[12px] text-[#B9C2BB] rotate-90 mt-1"></i>
+      </div>
+      <div class="px-4 py-3.5 flex gap-3 border-b border-[#F0F3F0]">
+        <span class="w-[24px] h-[24px] rounded-full bg-[#15803D] text-white text-[12px] font-semibold flex items-center justify-center shrink-0">3</span>
+        <div class="flex-1"><p class="text-[15px] text-[#1F2A24]">下番茄中火炒出汁,加半勺糖提鲜</p></div>
+        <i class="fa-solid fa-chevron-right text-[12px] text-[#B9C2BB] rotate-90 mt-1"></i>
+      </div>
+      <!-- 折叠态示例 -->
+      <div class="px-4 py-3.5 flex gap-3 bg-[#F6F8F4]">
+        <span class="w-[24px] h-[24px] rounded-full bg-[#B9C2BB] text-white text-[12px] font-semibold flex items-center justify-center shrink-0">4</span>
+        <div class="flex-1"><p class="text-[15px] text-[#7A8780]">回锅鸡蛋翻匀,撒葱花出锅(此步为折叠态样式)</p></div>
+        <i class="fa-solid fa-chevron-right text-[12px] text-[#B9C2BB] mt-1"></i>
+      </div>
+    </div>
+
+    <!-- 控件状态演示:禁用按钮实例 -->
+    <div class="mt-4 rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+      <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">控件状态演示 · 分享(默认/按压,见封面右上)+ 以下为禁用态</span>
+      <button class="w-full h-[44px] mt-3 rounded-xl bg-[#E6EBE6] text-[#B9C2BB] text-[15px] font-semibold cursor-not-allowed" disabled>导出购物清单(网络不可用时)</button>
+    </div>
+
+    <!-- ===== 组件规格态 ===== -->
+    <div class="mt-3 rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+      <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">核销成功反馈态 · Toast + 库存变化摘要(1.5 秒)</span>
+      <div class="mt-3 flex flex-col items-center">
+        <div class="h-[40px] px-4 rounded-xl bg-[#1F2A24]/90 flex items-center gap-2">
+          <i class="fa-solid fa-circle-check text-[14px] text-[#7CE495]"></i>
+          <span class="text-[15px] text-white">做了这道菜 · 库存已自动扣减</span>
+        </div>
+        <p class="text-[12px] text-[#7A8780] mt-2">番茄 4 → 2 个 · 鸡蛋 8 → 5 个</p>
+      </div>
+    </div>
+
+    <div class="mt-3 rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+      <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">扣减明细确认弹层 · 点「做了这道菜」时(可改实际用量)</span>
+      <div class="mt-3 rounded-xl bg-[#F6F8F4] border border-[#E6EBE6] p-4">
+        <p class="text-[16px] font-medium text-[#1F2A24] text-center">确认扣减这些食材?</p>
+        <p class="text-[12px] text-[#7A8780] text-center mt-1">按本菜谱标准用量扣减,可手动调整</p>
+        <div class="mt-3 space-y-2">
+          <div class="flex items-center justify-between"><span class="text-[15px] text-[#44514A]">番茄</span><span class="text-[15px] text-[#1F2A24] font-medium">4 → 2 个</span></div>
+          <div class="flex items-center justify-between"><span class="text-[15px] text-[#44514A]">鸡蛋</span><span class="text-[15px] text-[#1F2A24] font-medium">8 → 5 个</span></div>
+          <div class="flex items-center justify-between"><span class="text-[15px] text-[#44514A]">小葱</span><span class="text-[12px] text-[#DC2626]">缺料 · 置 0 并记录缺料 1 次</span></div>
+        </div>
+        <div class="flex gap-2 mt-3">
+          <button class="flex-1 h-[38px] rounded-lg bg-white border border-[#E6EBE6] text-[#44514A] text-[15px]">取消</button>
+          <button class="flex-1 h-[38px] rounded-lg bg-[#15803D] text-white text-[15px] font-medium">确认扣减</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- 底部主按钮:做了这道菜 -->
+<div class="fixed bottom-[92px] w-[393px] px-4 z-30">
+  <button class="w-full h-[48px] rounded-xl bg-[#15803D] text-white text-[16px] font-semibold shadow-[0_8px_24px_rgba(31,42,36,.16)] active:scale-95">做了这道菜</button>
+  <p class="text-[12px] text-[#7A8780] text-center mt-1.5">番茄 −2 · 鸡蛋 −3,一键核销,库存即时更新</p>
+</div>
+
+<!-- TabBar(来源 = Tab2 今天吃啥,呈激活态) -->
+<nav class="fixed bottom-0 w-[393px] z-40 bg-white/95 backdrop-blur border-t border-[#E6EBE6]">
+  <div class="relative h-[60px] px-2 flex">
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-box-archive text-[20px] text-[#9AA69E]"></i><span class="text-[12px] text-[#9AA69E]">库存</span>
+    </div>
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-utensils text-[20px] text-[#15803D]"></i><span class="text-[12px] text-[#15803D] font-medium">今天吃啥</span>
+    </div>
+    <div class="flex-1 relative">
+      <button class="absolute left-1/2 -translate-x-1/2 -top-[20px] w-[56px] h-[56px] rounded-full bg-[#15803D] border-[3px] border-white shadow-[0_8px_24px_rgba(31,42,36,.16)] flex items-center justify-center active:scale-95">
+        <i class="fa-solid fa-camera text-[22px] text-white"></i>
+      </button>
+    </div>
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-gear text-[20px] text-[#9AA69E]"></i><span class="text-[12px] text-[#9AA69E]">设置</span>
+    </div>
+  </div>
+  <div class="absolute bottom-[8px] left-1/2 -translate-x-1/2 w-[134px] h-[5px] rounded-full bg-black/80"></div>
+</nav>
+</body>
+</html>

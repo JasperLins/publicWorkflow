@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--
+  S12 · 订阅介绍页 subscribe.html | 冰箱食材管家 · 高保真静态原型(批 3 · P1 占位态,D-028)
+  占位声明:视觉细节(插画/营销文案 A/B 版)待订阅上线前(目标上线后 1 个月内,D-013)细化;
+  本页保证信息结构完整:权益对比(30 vs 300 + 高级菜谱)/ 档位卡(¥12 月 · ¥98 年)/ 恢复购买 / StoreKit 2 购买
+  单位规则:ui-spec.md 全 px 等值直用(无 pt 换算)
+  CDN:Tailwind v4 browser + FontAwesome 6.5.2(jsDelivr 主源,2026-08-17 curl 实测 200)
+  图片策略:本页无实拍图;头图 = CSS 渐变+皇冠图标(设计选择,非占位符)
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S12 订阅介绍 · 冰箱食材管家</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+</head>
+<body class="w-[393px] h-[852px] mx-auto bg-[#F6F8F4] overflow-x-hidden"
+      style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','PingFang SC','Helvetica Neue',sans-serif">
+
+<!-- iOS 状态栏 -->
+<div class="fixed top-0 w-[393px] z-40 bg-[#F6F8F4]">
+  <div class="relative h-[54px] flex items-center justify-between px-7">
+    <span class="text-[15px] font-semibold text-[#1F2A24]">9:41</span>
+    <div class="absolute left-1/2 -translate-x-1/2 top-[10px] w-[120px] h-[34px] bg-black rounded-full"></div>
+    <div class="flex items-center gap-[6px] text-[#1F2A24]">
+      <i class="fa-solid fa-signal text-[12px]"></i><i class="fa-solid fa-wifi text-[13px]"></i><i class="fa-solid fa-battery-full text-[16px]"></i>
+    </div>
+  </div>
+</div>
+
+<main class="pt-[54px] pb-[120px] px-4">
+  <!-- P1 占位标注(D-028) -->
+  <div class="mt-2 rounded-xl bg-[#FEF3C7] px-3 py-2 flex items-center gap-2">
+    <i class="fa-solid fa-circle-info text-[13px] text-[#B45309]"></i>
+    <p class="text-[12px] text-[#B45309]">P1 占位态:订阅上线前(上线后 1 个月内,D-013)细化营销视觉与文案</p>
+  </div>
+
+  <!-- 导航 -->
+  <div class="flex items-center gap-2 py-2">
+    <button class="w-[44px] h-[44px] -ml-2 flex items-center justify-center active:scale-95"><i class="fa-solid fa-chevron-left text-[18px] text-[#44514A]"></i></button>
+    <h1 class="text-[20px] font-semibold text-[#1F2A24]">升级冰箱管家 Pro</h1>
+  </div>
+
+  <!-- 头图(CSS 渐变+图标,设计选择非占位符) -->
+  <div class="relative h-[150px] rounded-[24px] overflow-hidden bg-gradient-to-br from-[#1F2A24] via-[#14532D] to-[#15803D] flex flex-col items-center justify-center">
+    <div class="w-[56px] h-[56px] rounded-full bg-white/15 flex items-center justify-center"><i class="fa-solid fa-crown text-[24px] text-[#FBBF24]"></i></div>
+    <p class="text-[20px] font-semibold text-white mt-2.5">每月 300 次整拍识别</p>
+    <p class="text-[12px] text-white/70 mt-1">+ 200 道私厨进阶菜谱 · 时令菜单</p>
+  </div>
+
+  <!-- 免费 vs 订阅权益对比表 -->
+  <div class="mt-4 bg-white rounded-2xl shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)] overflow-hidden">
+    <div class="grid grid-cols-3 px-4 py-2.5 bg-[#F6F8F4] text-[12px] text-[#7A8780]">
+      <span>权益</span><span class="text-center">免费版</span><span class="text-center text-[#B45309] font-medium">Pro</span>
+    </div>
+    <div class="grid grid-cols-3 px-4 py-3 items-center border-t border-[#F0F3F0]">
+      <span class="text-[15px] text-[#44514A]">整拍识别</span>
+      <span class="text-center text-[15px] text-[#1F2A24]">30 次/月</span>
+      <span class="text-center text-[15px] text-[#B45309] font-semibold">300 次/月</span>
+    </div>
+    <div class="grid grid-cols-3 px-4 py-3 items-center border-t border-[#F0F3F0]">
+      <span class="text-[15px] text-[#44514A]">高级菜谱库</span>
+      <span class="text-center"><i class="fa-solid fa-xmark text-[14px] text-[#B9C2BB]"></i></span>
+      <span class="text-center"><i class="fa-solid fa-check text-[14px] text-[#B45309]"></i></span>
+    </div>
+    <div class="grid grid-cols-3 px-4 py-3 items-center border-t border-[#F0F3F0]">
+      <span class="text-[15px] text-[#44514A]">临期提醒</span>
+      <span class="text-center"><i class="fa-solid fa-check text-[14px] text-[#15803D]"></i></span>
+      <span class="text-center"><i class="fa-solid fa-check text-[14px] text-[#B45309]"></i></span>
+    </div>
+    <div class="grid grid-cols-3 px-4 py-3 items-center border-t border-[#F0F3F0]">
+      <span class="text-[15px] text-[#44514A]">iCloud 备份</span>
+      <span class="text-center"><i class="fa-solid fa-check text-[14px] text-[#15803D]"></i></span>
+      <span class="text-center"><i class="fa-solid fa-check text-[14px] text-[#B45309]"></i></span>
+    </div>
+    <div class="px-4 py-2.5 border-t border-[#F0F3F0]">
+      <p class="text-[12px] text-[#7A8780]">免费闭环永远完整:临期提醒与手动录入不设限</p>
+    </div>
+  </div>
+
+  <!-- 档位卡 -->
+  <h2 class="mt-4 mb-2 text-[16px] font-medium text-[#1F2A24]">选择档位</h2>
+  <div class="grid grid-cols-2 gap-3">
+    <!-- 月付 -->
+    <div class="bg-white rounded-2xl p-4 border-2 border-[#E6EBE6] shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <p class="text-[12px] text-[#7A8780]">按月</p>
+      <p class="text-[28px] font-bold text-[#1F2A24] mt-1">¥12<span class="text-[12px] font-normal text-[#7A8780]"> /月</span></p>
+      <p class="text-[12px] text-[#7A8780] mt-1.5">折合每天 0.4 元</p>
+    </div>
+    <!-- 年付(推荐选中态) -->
+    <div class="relative bg-white rounded-2xl p-4 border-2 border-[#15803D] shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <span class="absolute right-3 top-3 h-[22px] px-2 rounded-full bg-[#15803D] text-white text-[12px] font-medium leading-[22px]">省 ¥46</span>
+      <p class="text-[12px] text-[#15803D] font-medium">按年 · 推荐</p>
+      <p class="text-[28px] font-bold text-[#15803D] mt-1">¥98<span class="text-[12px] font-normal text-[#7A8780]"> /年</span></p>
+      <p class="text-[12px] text-[#7A8780] mt-1.5">折合 ¥8.2/月</p>
+    </div>
+  </div>
+
+  <!-- 购买按钮(StoreKit 2)+ 恢复购买 -->
+  <button class="w-full h-[48px] mt-4 rounded-xl bg-[#15803D] text-white text-[16px] font-semibold active:scale-95">立即订阅 ¥98/年</button>
+  <button class="w-full h-[40px] mt-2 flex items-center justify-center gap-1.5 active:scale-95">
+    <i class="fa-solid fa-rotate-right text-[13px] text-[#44514A]"></i><span class="text-[15px] text-[#44514A]">恢复购买</span>
+  </button>
+  <p class="text-[12px] text-[#7A8780] text-center mt-2 leading-4">自动续订,可随时在 App Store 管理;点击后唤起系统支付(StoreKit 2)</p>
+
+  <!-- ===== 组件规格态 ===== -->
+  <div class="mt-5 rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+    <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">购买成功态 · 额度即时生效反馈</span>
+    <div class="mt-3 flex flex-col items-center">
+      <div class="h-[40px] px-4 rounded-xl bg-[#1F2A24]/90 flex items-center gap-2">
+        <i class="fa-solid fa-crown text-[14px] text-[#FBBF24]"></i>
+        <span class="text-[15px] text-white">已开通 Pro · 本月额度 300 次</span>
+      </div>
+      <p class="text-[12px] text-[#7A8780] mt-2">S04 徽章即刻变为「0/300」</p>
+    </div>
+  </div>
+
+  <div class="mt-3 rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+    <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">失败/取消态 · 留在免费版,闭环不受影响</span>
+    <div class="mt-3 rounded-xl bg-[#FEE2E2] px-3 py-2.5 flex items-center gap-2">
+      <i class="fa-solid fa-circle-exclamation text-[13px] text-[#DC2626]"></i>
+      <p class="flex-1 text-[12px] text-[#DC2626]">支付未完成,仍在免费版(30 次/月)</p>
+      <button class="text-[12px] text-[#DC2626] font-medium">重试</button>
+    </div>
+  </div>
+
+  <div class="mt-3 rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+    <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">已订阅管理态 · 再次进入本页时</span>
+    <div class="mt-3 rounded-xl bg-[#F6F8F4] border border-[#E6EBE6] px-3 py-2.5 flex items-center gap-2">
+      <i class="fa-solid fa-crown text-[13px] text-[#B45309]"></i>
+      <p class="flex-1 text-[12px] text-[#44514A]">Pro 年付 · 2027-08-17 到期</p>
+      <button class="text-[12px] text-[#15803D] font-medium">管理续订</button>
+    </div>
+  </div>
+</main>
+
+<!-- TabBar(来源 = Tab4 设置,呈激活态) -->
+<nav class="fixed bottom-0 w-[393px] z-40 bg-white/95 backdrop-blur border-t border-[#E6EBE6]">
+  <div class="relative h-[60px] px-2 flex">
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-box-archive text-[20px] text-[#9AA69E]"></i><span class="text-[12px] text-[#9AA69E]">库存</span>
+    </div>
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-utensils text-[20px] text-[#9AA69E]"></i><span class="text-[12px] text-[#9AA69E]">今天吃啥</span>
+    </div>
+    <div class="flex-1 relative">
+      <button class="absolute left-1/2 -translate-x-1/2 -top-[20px] w-[56px] h-[56px] rounded-full bg-[#15803D] border-[3px] border-white shadow-[0_8px_24px_rgba(31,42,36,.16)] flex items-center justify-center active:scale-95">
+        <i class="fa-solid fa-camera text-[22px] text-white"></i>
+      </button>
+    </div>
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-gear text-[20px] text-[#15803D]"></i><span class="text-[12px] text-[#15803D] font-medium">设置</span>
+    </div>
+  </div>
+  <div class="absolute bottom-[8px] left-1/2 -translate-x-1/2 w-[134px] h-[5px] rounded-full bg-black/80"></div>
+</nav>
+</body>
+</html>

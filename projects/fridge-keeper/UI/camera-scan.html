@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+  S04 · 整拍拍照页 camera-scan.html | 冰箱食材管家 · 高保真静态原型(批 1)
+  画布:393×852 纯屏;深色取景 UI;状态栏深色版;TabBar 深色变体(中央📷激活)
+  单位规则:ui-spec.md 全 px,本文件等值直接使用(无 pt 换算)
+  CDN:Tailwind v4 browser + FontAwesome 6.5.2(jsDelivr 主源,2026-08-17 curl 实测 200)
+  图片策略:取景画面 = Unsplash 实拍直链(已实测 200)做「取景模拟」;额度徽章=FR-10 拦截前置透出点
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S04 整拍拍照页 · 冰箱食材管家</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+</head>
+<body class="w-[393px] h-[852px] mx-auto bg-[#0B0F0C] overflow-x-hidden"
+      style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','PingFang SC','Helvetica Neue',sans-serif">
+
+<!-- iOS 状态栏(深色版,悬浮于取景画面上) -->
+<div class="fixed top-0 w-[393px] z-40">
+  <div class="relative h-[54px] flex items-center justify-between px-7">
+    <span class="text-[15px] font-semibold text-white">9:41</span>
+    <div class="absolute left-1/2 -translate-x-1/2 top-[10px] w-[120px] h-[34px] bg-black rounded-full"></div>
+    <div class="flex items-center gap-[6px] text-white">
+      <i class="fa-solid fa-signal text-[12px]"></i>
+      <i class="fa-solid fa-wifi text-[13px]"></i>
+      <i class="fa-solid fa-battery-full text-[16px]"></i>
+    </div>
+  </div>
+</div>
+
+<!-- 顶部控制行:闪光灯 + 剩余额度徽章(FR-10 前置透出) -->
+<div class="fixed top-[54px] w-[393px] z-30 px-4 flex items-center justify-between">
+  <button class="w-[44px] h-[44px] rounded-full bg-black/40 backdrop-blur flex items-center justify-center active:scale-95">
+    <i class="fa-solid fa-bolt text-[16px] text-white"></i>
+  </button>
+  <div class="h-[32px] px-3 rounded-full bg-black/40 backdrop-blur flex items-center gap-2">
+    <i class="fa-solid fa-camera text-[12px] text-[#DCFCE7]"></i>
+    <span class="text-[12px] text-white">本月识别 <span class="text-[#7CE495] font-semibold">18/30</span></span>
+  </div>
+</div>
+
+<main class="pt-[54px] h-[852px] relative">
+  <!-- 取景画面:Unsplash 实拍直链(设计选择:静态原型用实拍图模拟取景器) -->
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="台面上的整袋新鲜蔬菜(取景模拟)" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/30"></div>
+  </div>
+
+  <!-- 取景引导:四角框 + 中央提示(D-004:整拍一张,多食材同框) -->
+  <div class="absolute left-[24px] right-[24px] top-[140px] bottom-[220px]">
+    <div class="absolute left-0 top-0 w-[36px] h-[36px] border-l-[3px] border-t-[3px] border-[#7CE495] rounded-tl-xl"></div>
+    <div class="absolute right-0 top-0 w-[36px] h-[36px] border-r-[3px] border-t-[3px] border-[#7CE495] rounded-tr-xl"></div>
+    <div class="absolute left-0 bottom-0 w-[36px] h-[36px] border-l-[3px] border-b-[3px] border-[#7CE495] rounded-bl-xl"></div>
+    <div class="absolute right-0 bottom-0 w-[36px] h-[36px] border-r-[3px] border-b-[3px] border-[#7CE495] rounded-br-xl"></div>
+    <div class="absolute inset-x-0 top-[26px] flex flex-col items-center">
+      <span class="h-[22px] px-2 rounded bg-[#F97316] text-white text-[12px] font-medium leading-[22px]">整拍模式</span>
+      <p class="text-[15px] text-white mt-3 text-center" style="text-shadow:0 1px 4px rgba(0,0,0,.5)">将食材平铺在台面,一张拍全</p>
+      <p class="text-[12px] text-white/70 mt-1" style="text-shadow:0 1px 4px rgba(0,0,0,.5)">支持 20+ 种食材同框识别 · 平均 2 秒出结果</p>
+    </div>
+  </div>
+
+  <!-- 快门行:相册 / 大快门 / 提示 -->
+  <div class="absolute bottom-[110px] w-[393px] flex items-center justify-center">
+    <div class="absolute left-[36px] flex flex-col items-center gap-1.5">
+      <div class="w-[44px] h-[44px] rounded-xl overflow-hidden border-2 border-white/70">
+        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=200&q=80" alt="相册最近一张(蔬菜)" class="w-full h-full object-cover">
+      </div>
+      <span class="text-[12px] text-white/80">相册</span>
+    </div>
+    <button class="w-[72px] h-[72px] rounded-full border-[4px] border-white flex items-center justify-center active:scale-95">
+      <span class="w-[58px] h-[58px] rounded-full bg-white"></span>
+    </button>
+    <div class="absolute right-[40px] flex flex-col items-center gap-1.5">
+      <span class="text-[12px] text-white/80 text-center leading-4">音量键<br>也可拍</span>
+    </div>
+  </div>
+</main>
+
+<!-- TabBar 深色变体(中央📷为来源入口,呈激活态) -->
+<nav class="fixed bottom-0 w-[393px] z-40 bg-black/85 backdrop-blur border-t border-white/10">
+  <div class="relative h-[60px] px-2 flex">
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-box-archive text-[20px] text-white/40"></i><span class="text-[12px] text-white/40">库存</span>
+    </div>
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-utensils text-[20px] text-white/40"></i><span class="text-[12px] text-white/40">今天吃啥</span>
+    </div>
+    <div class="flex-1 relative">
+      <button class="absolute left-1/2 -translate-x-1/2 -top-[20px] w-[56px] h-[56px] rounded-full bg-[#15803D] border-[3px] border-white shadow-[0_8px_24px_rgba(31,42,36,.4)] flex items-center justify-center active:scale-95">
+        <i class="fa-solid fa-camera text-[22px] text-white"></i>
+      </button>
+    </div>
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-gear text-[20px] text-white/40"></i><span class="text-[12px] text-white/40">设置</span>
+    </div>
+  </div>
+  <div class="absolute bottom-[8px] left-1/2 -translate-x-1/2 w-[134px] h-[5px] rounded-full bg-white/80"></div>
+</nav>
+
+<!-- ===== 组件规格态(深色虚线标注块,置于 852 画布下方,iframe 内纵向滚动查看) ===== -->
+<div class="w-[393px] bg-[#0B0F0C] px-4 pb-6 space-y-3">
+  <div class="rounded-2xl border-2 border-dashed border-white/30 bg-black/60 backdrop-blur p-3">
+    <span class="inline-block h-[22px] px-2 rounded bg-white text-[#1F2A24] text-[12px] font-medium leading-[22px]">识别中态 · 按快门后上传(P95 ≤3 秒,可取消)</span>
+    <div class="mt-2.5 h-[6px] rounded-full bg-white/20 overflow-hidden">
+      <div class="w-2/3 h-full rounded-full bg-[#16A34A]"></div>
+    </div>
+    <p class="text-[12px] text-white/80 mt-1.5">识别中…已找到 5 种食材</p>
+  </div>
+
+  <div class="rounded-2xl border-2 border-dashed border-white/30 bg-black/60 backdrop-blur p-3">
+    <span class="inline-block h-[22px] px-2 rounded bg-white text-[#1F2A24] text-[12px] font-medium leading-[22px]">相机权限被拒态 · 首次授权选择「不允许」时</span>
+    <div class="mt-2 flex items-center gap-3">
+      <i class="fa-solid fa-video-slash text-[18px] text-white/80"></i>
+      <p class="flex-1 text-[12px] text-white/80 leading-4">无法访问相机,可去系统设置开启;或改用手动录入,同样免费</p>
+    </div>
+    <div class="mt-2 flex gap-2">
+      <button class="h-[32px] px-3 rounded-full bg-[#DCFCE7] text-[#15803D] text-[12px] font-medium">去设置开启相机</button>
+      <button class="h-[32px] px-3 rounded-full border border-white/40 text-white text-[12px] font-medium">手动录入(免费)</button>
+    </div>
+  </div>
+
+  <div class="rounded-2xl border-2 border-dashed border-white/30 bg-black/60 backdrop-blur p-3">
+    <span class="inline-block h-[22px] px-2 rounded bg-white text-[#1F2A24] text-[12px] font-medium leading-[22px]">无网络提示态 · 离线时(本地功能不受影响)</span>
+    <div class="mt-2 rounded-xl bg-[#3B82F6]/20 px-3 py-2 flex items-center gap-2">
+      <i class="fa-solid fa-wifi text-[12px] text-[#93C5FD]"></i>
+      <p class="flex-1 text-[12px] text-[#93C5FD]">网络不可用,识别需联网;临期提醒与库存浏览不受影响</p>
+    </div>
+    <p class="text-[12px] text-white/60 mt-1.5">额度用尽拦截弹层 → 见 S09 quota-limit.html(半屏弹层呈现)</p>
+  </div>
+</div>
+</body>
+</html>

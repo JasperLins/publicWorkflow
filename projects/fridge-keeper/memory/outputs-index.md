@@ -19,6 +19,10 @@
 | 2026-08-17 | 4 | projects/fridge-keeper/docs/04-tech/questions-stage4.md | 7 题,模拟选推荐项(D-019~025);主代理预检通过 | 决策、批量提问 | 已确认 |
 | 2026-08-17 | 4 | projects/fridge-keeper/docs/03-requirements/feature-list.md | **v0.2 已回填校准**:27 子任务,直接 38.5/含缓冲 53.9(+11.6% 阈值内),P0 含缓冲 45.5,AI 并行 81% | 功能拆解、回填校准、变更记录 | 已确认 |
 | 2026-08-17 | 4 | projects/fridge-keeper/docs/03-requirements/requirement-doc.md | v0.2:FR-10 N=30、FR-11 M=300 按 D-021 回填 | PRD、额度参数 | 已确认 |
+| 2026-08-17 | 5 | projects/fridge-keeper/docs/05-uiux/ux-flows.md | UX:12 屏(P0×9/P1×3),TabBar 4+中央📷,闭环四环+5 类异常,字号 px 体系,FR 全映射 | UX、界面清单、信息架构 | 已确认 |
+| 2026-08-17 | 5 | projects/fridge-keeper/docs/05-uiux/ui-spec.md | UI 规范:鲜蔬绿 hex 全套(D-030)、字号 28/20/16/15/12、组件规格、CDN 实测 | UI 规范、色彩、组件 | 已确认 |
+| 2026-08-17 | 5 | projects/fridge-keeper/UI/(index+12 屏) | 高保真原型 13 文件,3 批生成,自检 9✓1△,jsDelivr 200,零 lorem 零死链 | UI、原型、Tailwind | 已确认 |
+| 2026-08-17 | 5 | projects/fridge-keeper/docs/05-uiux/questions-stage5.md | 5 题(4 题先行裁决+风格题),模拟选推荐项(D-026~030);预检通过 | 决策、批量提问 | 已确认 |
 
 ## 阶段运行台账(token 按 skill 粒度)
 | 阶段 | 子任务状态(done/pending) | token 估算 | 产出量(文件/行) | 门禁三态 |
@@ -28,8 +32,9 @@
 | 2 | market-supply-demand=done;competitor-analysis=done | 2A≈22 万;2B≈29 万(子代理token) | 3 文件/~500 行 | 预检通过→模拟答题(一次通过) |
 | 3 | requirements-organizer=done;feature-breakdown(初估)=done | 阶段3≈54 万;QA预检≈32 万(子代理token) | 3 文件/~230 行 | QA 修复 5 项后通过→模拟答题(经修订通过) |
 | 4 | tech-stack-selector=done;third-party-service-scout=done;回填校准=done(快检通过) | 架构师≈138 万;回填≈55 万(子代理token) | 3+2 修订/580 行 | 主代理预检通过→模拟答题(一次通过);回填 +11.6% 阈值内 |
+| 5 | ux-flow-designer=done;app-ui-design=done(深度档 3 批) | UX≈27 万;UI≈288 万(生成 13 文件+CDN 校验往返,子代理token) | ux-flows+ui-spec+13 HTML/~2600 行 | 主代理预检通过→模拟答题(一次通过) |
 
 ## 项目进度(唯一事实源)
-- 已完成阶段:0、1(种子)、2、3、4(回填校准完成,53.9 人日定稿基线)
-- 进行中:阶段 5 · UX 流程与界面清单
-- 下一动作:UX 设计师 ux-flows.md → UI 设计师 app-ui-design 原型 → 门禁 5
+- 已完成阶段:0、1(种子)、2、3、4、5(原型定稿 D-030 鲜蔬绿)
+- 进行中:阶段 6 · AI 开发计划
+- 下一动作:ai-dev-estimator(以回填校准后 53.9 人日为基准)→ 阶段 7 报价

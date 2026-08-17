@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--
+  S07 · 今天吃啥推荐列表 recipe-today.html | 冰箱食材管家 · 高保真静态原型(批 2)
+  画布:393×852 纯屏;只推现存可做的菜,优先消化临期(D-2B-2);FR-14 筛选器为 P2 组件级呈现
+  单位规则:ui-spec.md 全 px 等值直用(无 pt 换算)
+  CDN:Tailwind v4 browser + FontAwesome 6.5.2(jsDelivr 主源,2026-08-17 curl 实测 200)
+  图片策略:菜谱封面 = Unsplash 实拍直链(实测 200);锁定卡 = CSS 渐变+图标(设计选择,非占位符)
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S07 今天吃啥 · 冰箱食材管家</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+</head>
+<body class="w-[393px] h-[852px] mx-auto bg-[#F6F8F4] overflow-x-hidden"
+      style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','PingFang SC','Helvetica Neue',sans-serif">
+
+<!-- iOS 状态栏 -->
+<div class="fixed top-0 w-[393px] z-40 bg-[#F6F8F4]">
+  <div class="relative h-[54px] flex items-center justify-between px-7">
+    <span class="text-[15px] font-semibold text-[#1F2A24]">9:41</span>
+    <div class="absolute left-1/2 -translate-x-1/2 top-[10px] w-[120px] h-[34px] bg-black rounded-full"></div>
+    <div class="flex items-center gap-[6px] text-[#1F2A24]">
+      <i class="fa-solid fa-signal text-[12px]"></i><i class="fa-solid fa-wifi text-[13px]"></i><i class="fa-solid fa-battery-full text-[16px]"></i>
+    </div>
+  </div>
+</div>
+
+<main class="pt-[54px] pb-[112px] px-4">
+  <!-- 页面大标题 -->
+  <div class="pt-2 pb-3">
+    <h1 class="text-[28px] leading-[34px] font-bold text-[#1F2A24]">今天吃啥</h1>
+    <p class="text-[12px] text-[#7A8780] mt-1">根据现存 23 项食材推荐 · 优先消化临期</p>
+  </div>
+
+  <!-- 现存食材摘要条 -->
+  <div class="rounded-xl bg-[#DCFCE7] px-3 py-2.5 flex items-center gap-2">
+    <i class="fa-solid fa-leaf text-[14px] text-[#15803D]"></i>
+    <p class="flex-1 text-[12px] text-[#15803D]">现存 23 项 · <span class="font-semibold">5 项临期</span>,以下菜谱已按消化临期排序</p>
+  </div>
+
+  <!-- 筛选栏(FR-14 · P2 组件级呈现,A-030) -->
+  <div class="flex items-center gap-2 mt-3">
+    <div class="flex gap-2 flex-1 overflow-x-auto">
+      <span class="shrink-0 h-[32px] px-3.5 rounded-full bg-[#DCFCE7] text-[#15803D] text-[12px] font-medium flex items-center">全部</span>
+      <span class="shrink-0 h-[32px] px-3.5 rounded-full bg-white border border-[#E6EBE6] text-[#44514A] text-[12px] flex items-center">10 分钟快炒</span>
+      <span class="shrink-0 h-[32px] px-3.5 rounded-full bg-white border border-[#E6EBE6] text-[#44514A] text-[12px] flex items-center">孩子爱吃</span>
+      <span class="shrink-0 h-[32px] px-3.5 rounded-full bg-white border border-[#E6EBE6] text-[#44514A] text-[12px] flex items-center">低卡</span>
+    </div>
+    <button class="w-[32px] h-[32px] rounded-full bg-white border border-[#E6EBE6] flex items-center justify-center active:scale-95">
+      <i class="fa-solid fa-sliders text-[13px] text-[#44514A]"></i>
+    </button>
+  </div>
+
+  <!-- 菜谱卡片流 -->
+  <div class="mt-3 space-y-4">
+    <!-- 菜谱 1:番茄炒蛋(消化 2 项临期,排首位) -->
+    <div class="bg-white rounded-2xl overflow-hidden shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="relative h-[150px]">
+        <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=800&q=80" alt="家常番茄炒蛋(封面示意)" class="w-full h-full object-cover">
+        <span class="absolute left-3 top-3 h-[24px] px-2 rounded-full bg-[#B45309] text-white text-[12px] font-medium leading-[24px]">可消化 2 项临期</span>
+      </div>
+      <div class="p-3.5">
+        <div class="flex items-center justify-between">
+          <p class="text-[16px] font-medium text-[#1F2A24]">番茄炒蛋</p>
+          <div class="flex items-center gap-1.5 text-[12px] text-[#7A8780]"><i class="fa-solid fa-clock text-[12px]"></i>10 分钟 · 简单 · 2 人份</div>
+        </div>
+        <p class="text-[12px] text-[#7A8780] mt-1.5">用掉:<span class="text-[#B45309] font-medium">番茄 ×2(剩 2 天)</span> · 鸡蛋 ×3 现存充足</p>
+      </div>
+    </div>
+
+    <!-- 菜谱 2:蒜蓉西兰花 -->
+    <div class="bg-white rounded-2xl overflow-hidden shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="relative h-[150px]">
+        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="清炒时蔬(封面示意)" class="w-full h-full object-cover">
+        <span class="absolute left-3 top-3 h-[24px] px-2 rounded-full bg-[#FEF3C7] text-[#B45309] text-[12px] font-medium leading-[24px]">可消化 1 项临期</span>
+      </div>
+      <div class="p-3.5">
+        <div class="flex items-center justify-between">
+          <p class="text-[16px] font-medium text-[#1F2A24]">蒜蓉西兰花</p>
+          <div class="flex items-center gap-1.5 text-[12px] text-[#7A8780]"><i class="fa-solid fa-clock text-[12px]"></i>8 分钟 · 简单 · 2 人份</div>
+        </div>
+        <p class="text-[12px] text-[#7A8780] mt-1.5">用掉:<span class="text-[#B45309] font-medium">西兰花 ×1(剩 3 天)</span> · 蒜 3 瓣常备</p>
+      </div>
+    </div>
+
+    <!-- 菜谱 3:香菇滑鸡 -->
+    <div class="bg-white rounded-2xl overflow-hidden shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="relative h-[150px]">
+        <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?auto=format&fit=crop&w=800&q=80" alt="热锅家常小炒(封面示意)" class="w-full h-full object-cover">
+        <span class="absolute left-3 top-3 h-[24px] px-2 rounded-full bg-[#FEF3C7] text-[#B45309] text-[12px] font-medium leading-[24px]">可消化 1 项临期</span>
+      </div>
+      <div class="p-3.5">
+        <div class="flex items-center justify-between">
+          <p class="text-[16px] font-medium text-[#1F2A24]">香菇滑鸡</p>
+          <div class="flex items-center gap-1.5 text-[12px] text-[#7A8780]"><i class="fa-solid fa-clock text-[12px]"></i>15 分钟 · 中等 · 3 人份</div>
+        </div>
+        <p class="text-[12px] text-[#7A8780] mt-1.5">用掉:<span class="text-[#B45309] font-medium">鲜香菇 ×150g(剩 2 天)</span> · 鸡腿肉现存量足</p>
+      </div>
+    </div>
+
+    <!-- 菜谱 4:上汤娃娃菜(缺 1 料,如实标注) -->
+    <div class="bg-white rounded-2xl overflow-hidden shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)]">
+      <div class="relative h-[150px]">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80" alt="上汤时蔬(封面示意)" class="w-full h-full object-cover">
+        <span class="absolute left-3 top-3 h-[24px] px-2 rounded-full bg-[#FEF3C7] text-[#B45309] text-[12px] font-medium leading-[24px]">可消化 1 项临期</span>
+      </div>
+      <div class="p-3.5">
+        <div class="flex items-center justify-between">
+          <p class="text-[16px] font-medium text-[#1F2A24]">上汤娃娃菜</p>
+          <div class="flex items-center gap-1.5 text-[12px] text-[#7A8780]"><i class="fa-solid fa-clock text-[12px]"></i>12 分钟 · 简单 · 2 人份</div>
+        </div>
+        <p class="text-[12px] text-[#7A8780] mt-1.5">用掉:<span class="text-[#B45309] font-medium">娃娃菜 ×2(剩 3 天)</span> · <span class="text-[#DC2626]">缺皮蛋 1 个,可省略</span></p>
+      </div>
+    </div>
+
+    <!-- 高级菜谱锁定卡(P1 订阅上线后出现) -->
+    <div class="relative rounded-2xl overflow-hidden shadow-[0_1px_2px_rgba(31,42,36,.05),0_6px_16px_rgba(31,42,36,.06)] bg-gradient-to-br from-[#1F2A24] to-[#0F1A12]">
+      <div class="h-[150px] flex flex-col items-center justify-center gap-2">
+        <div class="w-[44px] h-[44px] rounded-full bg-white/10 flex items-center justify-center"><i class="fa-solid fa-lock text-[18px] text-[#D97706]"></i></div>
+        <p class="text-[16px] font-medium text-white">私厨进阶菜谱 · 200+ 道</p>
+        <p class="text-[12px] text-white/60">订阅解锁:低卡周餐计划 / 时令限定菜单</p>
+      </div>
+      <span class="absolute left-3 top-3 h-[24px] px-2 rounded-full bg-[#D97706] text-white text-[12px] font-medium leading-[24px]"><i class="fa-solid fa-crown text-[12px] mr-1"></i>Pro</span>
+      <span class="absolute right-3 top-3 h-[24px] px-2 rounded-full bg-white/15 text-white/80 text-[12px] leading-[24px]">锁定态 · P1 上线后出现</span>
+    </div>
+  </div>
+
+  <!-- ===== 组件规格态 ===== -->
+  <div class="mt-5 rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+    <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">库存为空态 · 尚未录入任何食材</span>
+    <div class="flex flex-col items-center py-4">
+      <div class="w-[56px] h-[56px] rounded-full bg-gradient-to-br from-[#A5D6A7] to-[#2E7D32] flex items-center justify-center"><i class="fa-solid fa-basket-shopping text-[24px] text-white"></i></div>
+      <p class="text-[16px] font-medium text-[#1F2A24] mt-3">先录入食材,再给你推荐</p>
+      <p class="text-[15px] text-[#7A8780] mt-1">拍一张冰箱照片,马上就能看到能做的菜</p>
+      <button class="mt-3 h-[44px] px-6 rounded-xl bg-[#15803D] text-white text-[16px] font-semibold active:scale-95">去拍一张</button>
+    </div>
+  </div>
+
+  <div class="mt-3 rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+    <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">无可做菜谱态 · 现存食材组合不出菜(缺料提示 + 放宽建议)</span>
+    <div class="py-3">
+      <p class="text-[15px] text-[#1F2A24]">现在只剩调味料和主食,做不出完整的菜</p>
+      <p class="text-[12px] text-[#7A8780] mt-1.5">建议:放宽为「只需 1 种主料」,或看采购清单补 2 样食材</p>
+      <div class="flex gap-2 mt-3">
+        <button class="h-[36px] px-4 rounded-full bg-[#DCFCE7] text-[#15803D] text-[15px] font-medium">放宽筛选</button>
+        <button class="h-[36px] px-4 rounded-full bg-white border border-[#E6EBE6] text-[#44514A] text-[15px]">看采购建议</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-3 rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+    <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">筛选无结果态 · 多筛选叠加无匹配(清除最低权重筛选)</span>
+    <div class="py-3">
+      <p class="text-[15px] text-[#1F2A24]">「10 分钟快炒 + 低卡 + 孩子爱吃」没有交集</p>
+      <div class="flex items-center gap-2 mt-2 flex-wrap">
+        <span class="h-[26px] px-2.5 rounded-full bg-[#FEF3C7] text-[#B45309] text-[12px] leading-[26px]">10 分钟快炒 ×</span>
+        <span class="h-[26px] px-2.5 rounded-full bg-[#FEF3C7] text-[#B45309] text-[12px] leading-[26px]">低卡 ×</span>
+        <span class="h-[26px] px-2.5 rounded-full bg-[#DCFCE7] text-[#15803D] text-[12px] leading-[26px]">孩子爱吃(保留)</span>
+      </div>
+      <button class="mt-3 h-[36px] px-4 rounded-full bg-[#DCFCE7] text-[#15803D] text-[15px] font-medium">清除「低卡」,出 6 道菜</button>
+    </div>
+  </div>
+</main>
+
+<!-- TabBar(激活 = 今天吃啥) -->
+<nav class="fixed bottom-0 w-[393px] z-40 bg-white/95 backdrop-blur border-t border-[#E6EBE6]">
+  <div class="relative h-[60px] px-2 flex">
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-box-archive text-[20px] text-[#9AA69E]"></i><span class="text-[12px] text-[#9AA69E]">库存</span>
+    </div>
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-utensils text-[20px] text-[#15803D]"></i><span class="text-[12px] text-[#15803D] font-medium">今天吃啥</span>
+    </div>
+    <div class="flex-1 relative">
+      <button class="absolute left-1/2 -translate-x-1/2 -top-[20px] w-[56px] h-[56px] rounded-full bg-[#15803D] border-[3px] border-white shadow-[0_8px_24px_rgba(31,42,36,.16)] flex items-center justify-center active:scale-95">
+        <i class="fa-solid fa-camera text-[22px] text-white"></i>
+      </button>
+    </div>
+    <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+      <i class="fa-solid fa-gear text-[20px] text-[#9AA69E]"></i><span class="text-[12px] text-[#9AA69E]">设置</span>
+    </div>
+  </div>
+  <div class="absolute bottom-[8px] left-1/2 -translate-x-1/2 w-[134px] h-[5px] rounded-full bg-black/80"></div>
+</nav>
+</body>
+</html>

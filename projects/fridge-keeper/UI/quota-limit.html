@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--
+  S09 · 额度用尽引导 quota-limit.html | 冰箱食材管家 · 高保真静态原型(批 2)
+  画布:393×852 纯屏;D-027:半屏弹层呈现(拦截感轻),叠于 S04 取景暗化底上
+  主出路 = 手动录入(免费无限),永远在上;次出路 = 了解订阅(P1);FR-10/FR-11
+  单位规则:ui-spec.md 全 px 等值直用(无 pt 换算)
+  CDN:Tailwind v4 browser + FontAwesome 6.5.2(jsDelivr 主源,2026-08-17 curl 实测 200)
+  图片策略:暗化底 = Unsplash 取景图直链(实测 200)+ 黑色 60% 遮罩
+  结构说明:画布内元素全部 absolute 定位于 852px 容器;规格态块排在其后(iframe 滚动查看)
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S09 额度用尽 · 冰箱食材管家</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+</head>
+<body class="w-[393px] mx-auto bg-[#F6F8F4] overflow-x-hidden"
+      style="font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','PingFang SC','Helvetica Neue',sans-serif">
+
+<!-- ===== 393×852 画布 ===== -->
+<div class="relative w-[393px] h-[852px] bg-[#0B0F0C] overflow-hidden">
+
+  <!-- 取景暗化底(S04 视角) -->
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="取景画面(暗化底)" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/60"></div>
+  </div>
+
+  <!-- iOS 状态栏(深色) -->
+  <div class="absolute top-0 w-[393px] z-30">
+    <div class="relative h-[54px] flex items-center justify-between px-7">
+      <span class="text-[15px] font-semibold text-white">9:41</span>
+      <div class="absolute left-1/2 -translate-x-1/2 top-[10px] w-[120px] h-[34px] bg-black rounded-full"></div>
+      <div class="flex items-center gap-[6px] text-white">
+        <i class="fa-solid fa-signal text-[12px]"></i><i class="fa-solid fa-wifi text-[13px]"></i><i class="fa-solid fa-battery-full text-[16px]"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- TabBar 深色变体(被弹层遮住下半,呈被拦截氛围;来源 = 中央📷) -->
+  <div class="absolute bottom-0 w-[393px] z-10 bg-black/85 border-t border-white/10">
+    <div class="relative h-[60px] px-2 flex">
+      <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+        <i class="fa-solid fa-box-archive text-[20px] text-white/25"></i><span class="text-[12px] text-white/25">库存</span>
+      </div>
+      <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+        <i class="fa-solid fa-utensils text-[20px] text-white/25"></i><span class="text-[12px] text-white/25">今天吃啥</span>
+      </div>
+      <div class="flex-1 relative">
+        <div class="absolute left-1/2 -translate-x-1/2 -top-[20px] w-[56px] h-[56px] rounded-full bg-[#15803D]/40 border-[3px] border-white/30 flex items-center justify-center">
+          <i class="fa-solid fa-camera text-[22px] text-white/50"></i>
+        </div>
+      </div>
+      <div class="flex-1 flex flex-col items-center justify-center gap-[3px]">
+        <i class="fa-solid fa-gear text-[20px] text-white/25"></i><span class="text-[12px] text-white/25">设置</span>
+      </div>
+    </div>
+    <div class="absolute bottom-[8px] left-1/2 -translate-x-1/2 w-[134px] h-[5px] rounded-full bg-white/40"></div>
+  </div>
+
+  <!-- ===== D-027 半屏弹层(主态) ===== -->
+  <div class="absolute bottom-0 w-[393px] z-40 bg-white rounded-t-[20px] shadow-[0_8px_24px_rgba(31,42,36,.16)] px-4 pt-2.5 pb-[34px]">
+    <!-- 把手 -->
+    <div class="w-[36px] h-[5px] rounded-full bg-[#E6EBE6] mx-auto"></div>
+
+    <!-- 额度环 30/30(conic-gradient 纯 CSS 环形进度) -->
+    <div class="flex flex-col items-center mt-4">
+      <div class="relative w-[88px] h-[88px] rounded-full" style="background:conic-gradient(#DC2626 360deg, #E6EBE6 0deg)">
+        <div class="absolute inset-[10px] rounded-full bg-white flex flex-col items-center justify-center">
+          <span class="text-[20px] font-bold text-[#DC2626] leading-none">30/30</span>
+          <span class="text-[12px] text-[#7A8780] mt-1">本月已用</span>
+        </div>
+      </div>
+      <p class="text-[20px] font-semibold text-[#1F2A24] mt-3">本月识别额度已用完</p>
+      <p class="text-[15px] text-[#7A8780] text-center leading-[22px] mt-1.5 px-2">免费版每月 30 次整拍识别。手动录入<span class="text-[#15803D] font-medium">不限次数</span>,同样能管理全部食材。</p>
+    </div>
+
+    <!-- 重置提示 -->
+    <div class="mt-3 rounded-xl bg-[#F6F8F4] px-3 py-2.5 flex items-center gap-2">
+      <i class="fa-solid fa-clock text-[13px] text-[#7A8780]"></i>
+      <p class="text-[12px] text-[#7A8780]">09-01 自动重置为 30 次 · 还剩 14 天</p>
+    </div>
+
+    <!-- 主出路:手动录入(免费无限)——永远在上 -->
+    <button class="w-full h-[48px] mt-4 rounded-xl bg-[#15803D] text-white text-[16px] font-semibold active:scale-95">手动录入(免费 · 不限次数)</button>
+    <!-- 次出路:了解订阅(P1) -->
+    <button class="w-full h-[44px] mt-2 rounded-xl bg-[#FEF3C7] text-[#B45309] text-[15px] font-medium active:scale-95"><i class="fa-solid fa-crown text-[13px] mr-1"></i>了解订阅 · 每月 300 次识别</button>
+  </div>
+</div>
+
+<!-- ===== 组件规格态(画布下方,iframe 滚动查看) ===== -->
+<div class="w-[393px] bg-[#F6F8F4] px-4 py-4 space-y-3">
+  <div class="rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+    <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">订阅用户态 · 已订阅(M=300)时不出现此弹层</span>
+    <p class="text-[15px] text-[#7A8780] py-3">订阅用户额度上限 300 次/月,达到前不拦截;S04 顶部徽章同步显示如「58/300」</p>
+  </div>
+  <div class="rounded-2xl border-2 border-dashed border-[#B9C2BB] bg-white p-4">
+    <span class="inline-block h-[22px] px-2 rounded bg-[#1F2A24] text-white text-[12px] leading-[22px]">订阅未上线期变体 · S12 上线前隐藏订阅按钮,只留免费手动出路</span>
+    <div class="mt-3 w-[280px] mx-auto rounded-xl bg-[#F6F8F4] border border-[#E6EBE6] p-3">
+      <button class="w-full h-[44px] rounded-xl bg-[#15803D] text-white text-[15px] font-semibold">手动录入(免费 · 不限次数)</button>
+      <p class="text-[12px] text-[#7A8780] text-center mt-2">无订阅引导 · 闭环不受影响</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
