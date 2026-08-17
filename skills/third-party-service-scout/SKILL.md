@@ -20,7 +20,7 @@ updated: 2026-08-17
 5. **汇总**:月度固定成本合计 + 随用量增长的可变成本公式(供敏感性分析)。
 
 ## 产出要求
-- 路径:`docs/04-tech/third-party-services.md`,含文档头契约节。
+- 路径:`docs/04-tech/third-party-services.md`,使用模板 `templates/third-party-services.md`,含文档头契约节。
 - 表格列:服务类型 | 供应商 | 用途 | 用量假设 | 免费额度 | 预估月费(币种) | 备选。
 
 ## 投入缩放

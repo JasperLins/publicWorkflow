@@ -20,7 +20,7 @@ updated: 2026-08-17
 5. **问题收集**:数据缺口、目标市场取舍等,按批量提问格式整理(每题含推荐项与回退项)。
 
 ## 产出要求
-- 路径:`docs/02-market/feasibility.md`,含「📌 文档头契约」节。
+- 路径:`docs/02-market/feasibility.md`,使用模板 `templates/feasibility-report.md`,含「📌 文档头契约」节。
 - 每个数字标注 `(来源,置信度)`;纯推断标 `(推断)`。
 
 ## 投入缩放
