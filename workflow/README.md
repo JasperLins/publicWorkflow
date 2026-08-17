@@ -75,6 +75,7 @@ flowchart TD
 ## 阶段 6 · AI 开发计划(AI 开发高级工程师)
 - 调用 `ai-dev-estimator`;以**回填校准后**的功能清单工时为基准。
 - 产出:`docs/06-ai-plan/ai-dev-plan.md`。完成标准:任务包+周期+token 三档+人机分工。
+- 本阶段非门禁:待决策问题**随阶段 7 门禁合并提问**。
 
 ## 阶段 7 · 成本·利润·报价(商务顾问)🔒
 - 调用 `quotation-calculator`。产出:`docs/07-business/cost-profit.md`、`quotation.md`。
